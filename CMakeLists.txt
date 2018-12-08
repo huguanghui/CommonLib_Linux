@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-add_definitions(-std=c++11)
+#add_definitions(-std=c++11)
 
 project(cplusplus_common C CXX)
 
@@ -25,3 +25,4 @@ message(STATUS "PROJECT_SOURCE_DIR = " ${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(live555_module)
+add_subdirectory(nginx_module)
