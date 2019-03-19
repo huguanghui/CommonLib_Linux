@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/liblive_common.a  CMakeFiles/live_common.dir/hashtable.cpp.o CMakeFiles/live_common.dir/strDup.cpp.o
+/usr/bin/ranlib ../../lib/liblive_common.a

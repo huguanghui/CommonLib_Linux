@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../..//live555_module/hashlib/hashtable.h
+
+../..//live555_module/hashlib/strDup.h
+string.h
+-
+
+/home/hgh/GIT/CommonLib_linux/live555_module/hashlib/test/hash_test01.cpp
+iostream
+-
+live555_module/hashlib/strDup.h
+-
+live555_module/hashlib/hashtable.h
+-
+
