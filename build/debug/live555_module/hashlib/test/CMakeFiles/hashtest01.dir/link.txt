@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -Wall -Werror -rdynamic -O0  -rdynamic CMakeFiles/hashtest01.dir/hash_test01.cpp.o  -o ../../../bin/hashtest01 ../../../lib/liblive_common.a -lpthread -lrt 

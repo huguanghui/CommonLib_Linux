@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../lib/libngx_common.a  CMakeFiles/ngx_common.dir/ngx_hash.c.o CMakeFiles/ngx_common.dir/ngx_string.c.o CMakeFiles/ngx_common.dir/ngx_errno.c.o
-/usr/bin/ranlib ../../lib/libngx_common.a
