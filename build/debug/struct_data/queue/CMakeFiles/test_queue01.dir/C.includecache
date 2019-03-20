@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/GIT/CommonLib_Linux/struct_data/queue/queue01.c
+stdio.h
+-
+stdlib.h
+-
+sys/queue.h
+-
+

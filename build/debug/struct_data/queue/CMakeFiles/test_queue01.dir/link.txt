@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/test_queue01.dir/queue01.c.o  -o ../../bin/test_queue01 -rdynamic 

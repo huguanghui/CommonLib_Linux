@@ -26,3 +26,4 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(live555_module)
 add_subdirectory(nginx_module)
+add_subdirectory(struct_data)

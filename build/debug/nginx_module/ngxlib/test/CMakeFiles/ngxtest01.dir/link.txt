@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/ngxtest01.dir/ngx_test01.c.o  -o ../../../bin/ngxtest01 -rdynamic ../../../lib/libngx_common.a -lpthread -lrt 
