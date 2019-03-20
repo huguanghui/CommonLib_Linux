@@ -1,0 +1,1 @@
+add_executable(ts_list list_main.c list01.c)
