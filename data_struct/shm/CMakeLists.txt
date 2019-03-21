@@ -1,0 +1,1 @@
+add_executable(shm_test shm_main.c shareMem.c)

@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/shm_test.dir/shm_main.c.o CMakeFiles/shm_test.dir/shareMem.c.o  -o ../../bin/shm_test -rdynamic 

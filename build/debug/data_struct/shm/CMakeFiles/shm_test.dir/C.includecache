@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/GIT/CommonLib_Linux/data_struct/shm/shareMem.c
+stdio.h
+-
+shareMem.h
+/root/GIT/CommonLib_Linux/data_struct/shm/shareMem.h
+
+/root/GIT/CommonLib_Linux/data_struct/shm/shareMem.h
+
+/root/GIT/CommonLib_Linux/data_struct/shm/shm_main.c
+stdio.h
+-
+stdlib.h
+-
+shareMem.h
+/root/GIT/CommonLib_Linux/data_struct/shm/shareMem.h
+

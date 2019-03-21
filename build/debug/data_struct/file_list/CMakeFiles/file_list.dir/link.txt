@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -rdynamic CMakeFiles/file_list.dir/list_main.c.o  -o ../../bin/file_list 
