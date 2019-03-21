@@ -14,6 +14,7 @@
 #include "ngx_errno.h"
 #include "ngx_string.h"
 #include "ngx_hash.h"
+//#include "ngx_palloc.h"
 
 #define LF     (u_char) '\n'
 #define CR     (u_char) '\r'

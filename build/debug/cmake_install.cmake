@@ -37,6 +37,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/root/GIT/CommonLib_Linux/build/debug/live555_module/cmake_install.cmake")
   include("/root/GIT/CommonLib_Linux/build/debug/nginx_module/cmake_install.cmake")
   include("/root/GIT/CommonLib_Linux/build/debug/struct_data/cmake_install.cmake")
+  include("/root/GIT/CommonLib_Linux/build/debug/data_struct/cmake_install.cmake")
 
 endif()
 

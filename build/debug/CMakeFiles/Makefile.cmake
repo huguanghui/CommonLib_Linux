@@ -11,6 +11,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.5.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.5.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.5.1/CMakeSystem.cmake"
+  "../../data_struct/CMakeLists.txt"
+  "../../data_struct/file_list/CMakeLists.txt"
+  "../../data_struct/shm/CMakeLists.txt"
   "../../live555_module/CMakeLists.txt"
   "../../live555_module/hashlib/CMakeLists.txt"
   "../../live555_module/hashlib/test/CMakeLists.txt"
@@ -53,6 +56,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "nginx_module/ngxlib/test/CMakeFiles/CMakeDirectoryInformation.cmake"
   "struct_data/CMakeFiles/CMakeDirectoryInformation.cmake"
   "struct_data/queue/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "data_struct/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "data_struct/file_list/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "data_struct/shm/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -62,4 +68,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "nginx_module/ngxlib/CMakeFiles/ngx_common.dir/DependInfo.cmake"
   "nginx_module/ngxlib/test/CMakeFiles/ngxtest01.dir/DependInfo.cmake"
   "struct_data/queue/CMakeFiles/test_queue01.dir/DependInfo.cmake"
+  "data_struct/file_list/CMakeFiles/file_list.dir/DependInfo.cmake"
+  "data_struct/shm/CMakeFiles/shm_test.dir/DependInfo.cmake"
   )

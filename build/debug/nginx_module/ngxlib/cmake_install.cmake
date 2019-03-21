@@ -38,12 +38,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/ngx_common" TYPE FILE FILES
+    "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_log.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_string.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_errno.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_core.h"
+    "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_rbtree.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_config.h"
+    "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_palloc.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_linux_config.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_auto_config.h"
+    "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_list.h"
+    "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_alloc.h"
     "/root/GIT/CommonLib_Linux/nginx_module/ngxlib/ngx_hash.h"
     )
 endif()

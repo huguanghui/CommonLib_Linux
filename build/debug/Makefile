@@ -219,6 +219,32 @@ test_queue01/fast:
 	$(MAKE) -f struct_data/queue/CMakeFiles/test_queue01.dir/build.make struct_data/queue/CMakeFiles/test_queue01.dir/build
 .PHONY : test_queue01/fast
 
+#=============================================================================
+# Target rules for targets named file_list
+
+# Build rule for target.
+file_list: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 file_list
+.PHONY : file_list
+
+# fast build rule for target.
+file_list/fast:
+	$(MAKE) -f data_struct/file_list/CMakeFiles/file_list.dir/build.make data_struct/file_list/CMakeFiles/file_list.dir/build
+.PHONY : file_list/fast
+
+#=============================================================================
+# Target rules for targets named shm_test
+
+# Build rule for target.
+shm_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 shm_test
+.PHONY : shm_test
+
+# fast build rule for target.
+shm_test/fast:
+	$(MAKE) -f data_struct/shm/CMakeFiles/shm_test.dir/build.make data_struct/shm/CMakeFiles/shm_test.dir/build
+.PHONY : shm_test/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -236,6 +262,8 @@ help:
 	@echo "... ngx_common"
 	@echo "... ngxtest01"
 	@echo "... test_queue01"
+	@echo "... file_list"
+	@echo "... shm_test"
 .PHONY : help
 
 
