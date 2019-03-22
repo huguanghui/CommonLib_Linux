@@ -3,6 +3,25 @@
 # 共享内存
 > 允许不相关的进程访问同一个逻辑内存.
 
+## 查看系统的共享内存
+
+### ipcs
+
+#### 选项
+
+```shell
+-m  显示有关共享内存的信息
+-q  显示有关信息队列的信息
+-s  显示有关semaphore的信息
+```
+
+#### 样例
+
+```shell
+$ ipcs -m
+$ ipcrm -m shm_id 删除ipc
+```
+
 ```cpp
 #include <sys/types.h>
 #include <sys/ipc.h>
