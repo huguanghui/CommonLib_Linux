@@ -1,0 +1,1 @@
+add_executable(test_ngx_queue01 ngx_main.c ngx_queue.c)
