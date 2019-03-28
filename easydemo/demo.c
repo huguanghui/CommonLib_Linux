@@ -20,6 +20,8 @@
 
 #define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
 
+#define HGH_DBG_CHAR(fmt, args...) do {printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args); getchar();}while(0)
+
 // 部分颜色代码:
 // 字背景颜色: 40--49                字颜色: 30--39
 // 40: 黑                           30: 黑
@@ -41,7 +43,8 @@ int main(int argc, char *argv[])
     // TRC_P("abc\n");
     // TRC_PG("abc\n");
     // TRC_PR("abc\n");
-    HGH_DBG("abc\n");
+    // HGH_DBG("abc\n");
+    HGH_DBG_CHAR("abc\n");
 
     return 0;
 }

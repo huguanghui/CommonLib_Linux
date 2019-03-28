@@ -1,0 +1,1 @@
+add_executable(ifreq_test ifreq_main.c)
