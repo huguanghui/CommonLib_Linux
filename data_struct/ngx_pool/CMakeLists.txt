@@ -1,0 +1,1 @@
+add_executable(ngxpool pool_main.c)

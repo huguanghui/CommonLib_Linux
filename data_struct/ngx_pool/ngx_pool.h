@@ -3,8 +3,9 @@
 
 #include <linux/types.h>
 
-typedef struct ngx_pool_s            ngx_pool_t;
+#define HGH_DBG(fmt, args...) printf("\033[40;33m [POOL]-(%s %d):\t\033[0m"fmt,  __func__, __LINE__, ## args)
 
+typedef struct ngx_pool_s            ngx_pool_t;
 
 #define NGX_MAX_ALLOC_FROM_POOL  (4096 - 1)
 
