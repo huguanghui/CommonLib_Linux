@@ -39,12 +39,14 @@ void ngx_destroy_pool(ngx_pool_t *pool)
 
     HGH_DBG("Begin destroy!\n");
     for (c = pool->cleanup; c; c = c->next) {
+        HGH_DBG("c->handler:0x%p\n", c->handler);
         if (c->handler) {
             c->handler(c->data);
         }
     }
 
     for (l = pool->large; l; l = l->next) {
+        HGH_DBG("l->alloc:0x%p\n", l->alloc);
         if (l->alloc) {
             free(l->alloc);
         }
