@@ -1,1 +1,1 @@
-add_executable(ngxpool pool_main.c)
+add_executable(ngxpool pool_main.c ngx_pool.c)
