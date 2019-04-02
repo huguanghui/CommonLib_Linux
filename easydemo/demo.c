@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+#include "data_struct/ngx_pool/ngx_pool.h"
+
 //仅仅是打印函数名字替换 DEBUG <--> printf
 #define DEBUG(format, ...) printf(format, ##__VA_ARGS__)
 
@@ -18,7 +20,7 @@
 //名字替换，并在打印出来的内容加上前缀,同时加入定位的功能，并让打印的前缀具备特殊颜色
 #define TRC_PR(fmt, args...) fprintf(stderr, "\033[1;31m  TRC_PR(%s:%d):\t\033[0m" fmt, __func__, __LINE__, ## args)
 
-#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
+//#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
 
 #define HGH_DBG_CHAR(fmt, args...) do {printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args); getchar();}while(0)
 
@@ -55,6 +57,11 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    ngx_pool_t *pool = NULL;
+    pool = ngx_create_pool(1024);
+
+    ngx_destroy_pool(pool);
+
     HGH_DBG("I:%d\n", i);
 
     HGH_DBG_CHAR("abc\n");

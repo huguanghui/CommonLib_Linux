@@ -1,5 +1,6 @@
-ngx_array_t *
-ngx_array_create(ngx_pool_t *p, ngx_uint_t n, size_t size)
+#include "ngx_array.h"
+
+ngx_array_t *ngx_array_create(ngx_pool_t *p, int n, size_t size)
 {
     ngx_array_t *a;
 
@@ -8,7 +9,7 @@ ngx_array_create(ngx_pool_t *p, ngx_uint_t n, size_t size)
         return NULL;
     }
 
-    if (ngx_array_init(a, p, n, size) != NGX_OK) {
+    if (ngx_array_init(a, p, n, size) != 0) {
         return NULL;
     }
 

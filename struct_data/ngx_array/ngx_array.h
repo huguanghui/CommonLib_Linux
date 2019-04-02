@@ -1,6 +1,7 @@
 #ifndef _NGX_ARRAY_H_INCLUDED_
 #define _NGX_ARRAY_H_INCLUDED_
 
+#include "data_struct/ngx_pool/ngx_pool.h"
 
 typedef struct {
     void        *elts;
@@ -11,14 +12,13 @@ typedef struct {
 } ngx_array_t;
 
 
-ngx_array_t *ngx_array_create(ngx_pool_t *p, ngx_uint_t n, size_t size);
+ngx_array_t *ngx_array_create(ngx_pool_t *p, int n, size_t size);
 void ngx_array_destroy(ngx_array_t *a);
 void *ngx_array_push(ngx_array_t *a);
-void *ngx_array_push_n(ngx_array_t *a, ngx_uint_t n);
+void *ngx_array_push_n(ngx_array_t *a, int n);
 
 
-static ngx_inline ngx_int_t
-ngx_array_init(ngx_array_t *array, ngx_pool_t *pool, ngx_uint_t n, size_t size)
+static int ngx_array_init(ngx_array_t *array, ngx_pool_t *pool, int n, size_t size)
 {
     /*
      * set "array->nelts" before "array->elts", otherwise MSVC thinks
