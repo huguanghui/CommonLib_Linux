@@ -44,6 +44,19 @@ int main(int argc, char *argv[])
     // TRC_PG("abc\n");
     // TRC_PR("abc\n");
     // HGH_DBG("abc\n");
+    int i = 0;
+    int n = 0;
+
+    for (n = 0; n < 20; n ++)
+    {
+        if (i++ > 3)
+        {
+            HGH_DBG("I:%d\n", i);
+            break;
+        }
+    }
+    HGH_DBG("I:%d\n", i);
+
     HGH_DBG_CHAR("abc\n");
 
     return 0;
