@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <malloc.h>
 #include <string.h>
 #include <sys/types.h>
 
@@ -68,14 +69,14 @@ void ngx_destroy_pool(ngx_pool_t *pool);
 void ngx_reset_pool(ngx_pool_t *pool);
 
 // // 使用内存池分配siz大小的内存
-// void *ngx_palloc(ngx_pool_t *pool, size_t size);
+void *ngx_palloc(ngx_pool_t *pool, size_t size);
 // // 使用内存池分配siz大小的内存
-// void *ngx_pnalloc(ngx_pool_t *pool, size_t size);
+void *ngx_pnalloc(ngx_pool_t *pool, size_t size);
 // // 使用内存池分配siz大小的内存,并执行初始化
-// void *ngx_pcalloc(ngx_pool_t *pool, size_t size);
+void *ngx_pcalloc(ngx_pool_t *pool, size_t size);
 // // 使用内存池分配siz大小对其字节为alignment的内存
-// void *ngx_pmemalign(ngx_pool_t *pool, size_t size, size_t alignment);
+void *ngx_pmemalign(ngx_pool_t *pool, size_t size, size_t alignment);
 // // 释放指定
-// int ngx_pfree(ngx_pool_t *pool, void *p);
+int ngx_pfree(ngx_pool_t *pool, void *p);
 
 #endif
