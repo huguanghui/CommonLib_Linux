@@ -17,8 +17,7 @@ ngx_array_t *ngx_array_create(ngx_pool_t *p, int n, size_t size)
 }
 
 
-void
-ngx_array_destroy(ngx_array_t *a)
+void ngx_array_destroy(ngx_array_t *a)
 {
     ngx_pool_t  *p;
 
@@ -34,8 +33,7 @@ ngx_array_destroy(ngx_array_t *a)
 }
 
 
-void *
-ngx_array_push(ngx_array_t *a)
+void *ngx_array_push(ngx_array_t *a)
 {
     void        *elt, *new;
     size_t       size;
@@ -68,7 +66,7 @@ ngx_array_push(ngx_array_t *a)
                 return NULL;
             }
 
-            ngx_memcpy(new, a->elts, size);
+            memcpy(new, a->elts, size);
             a->elts = new;
             a->nalloc *= 2;
         }
@@ -82,11 +80,11 @@ ngx_array_push(ngx_array_t *a)
 
 
 void *
-ngx_array_push_n(ngx_array_t *a, ngx_uint_t n)
+ngx_array_push_n(ngx_array_t *a, int n)
 {
     void        *elt, *new;
     size_t       size;
-    ngx_uint_t   nalloc;
+    int   nalloc;
     ngx_pool_t  *p;
 
     size = n * a->size;
@@ -118,7 +116,7 @@ ngx_array_push_n(ngx_array_t *a, ngx_uint_t n)
                 return NULL;
             }
 
-            ngx_memcpy(new, a->elts, a->nelts * a->size);
+            memcpy(new, a->elts, a->nelts * a->size);
             a->elts = new;
             a->nalloc = nalloc;
         }

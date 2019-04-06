@@ -1,7 +1,7 @@
 #ifndef _NGX_ARRAY_H_INCLUDED_
 #define _NGX_ARRAY_H_INCLUDED_
 
-#include "data_struct/ngx_pool/ngx_pool.h"
+#include "ngx_pool.h"
 
 typedef struct {
     void        *elts;
@@ -17,7 +17,6 @@ void ngx_array_destroy(ngx_array_t *a);
 void *ngx_array_push(ngx_array_t *a);
 void *ngx_array_push_n(ngx_array_t *a, int n);
 
-
 static int ngx_array_init(ngx_array_t *array, ngx_pool_t *pool, int n, size_t size)
 {
     /*
@@ -32,10 +31,10 @@ static int ngx_array_init(ngx_array_t *array, ngx_pool_t *pool, int n, size_t si
 
     array->elts = ngx_palloc(pool, n * size);
     if (array->elts == NULL) {
-        return NGX_ERROR;
+        return -1;
     }
 
-    return NGX_OK;
+    return 0;
 }
 
 

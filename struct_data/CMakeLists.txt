@@ -1,3 +1,6 @@
 add_subdirectory(queue)
 add_subdirectory(ngx_queue)
+add_subdirectory(ngx_array)
+add_subdirectory(ngx_string)
+add_subdirectory(ngx_list)
 #add_subdirectory(list01)
