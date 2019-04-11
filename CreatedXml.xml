@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<root><newNode1>newNode1 content</newNode1><newNode2>newNode2 content</newNode2><newNode3>newNode3 content</newNode3><node2 attribute="yes">NODE CONTENT</node2><son><grandson>This is a grandson node</grandson></son></root>
