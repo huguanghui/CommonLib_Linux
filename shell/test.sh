@@ -21,10 +21,11 @@
 
 #array_name=(value0 value1 value2 value3)
 
-str=["1.0.0.0" "1.0.0.1" "1.0.1.0" "1.1.0.0"]
+str="1.0.0.0 1.0.0.1 1.0.1.0 1.1.0.0"
 
 echo $str
 
-for i in $str ; do
+for i in $str
+do
     echo $i
 done
