@@ -1,0 +1,14 @@
+<?xml version: '1.0' encoding='UTF-8' ?>
+<IrCutFillter Version='1.0' 
+    xmlns='http://www.zwcloud.wang/ver10/XMLSchema'>
+    <Mode>variablewhitelight</Mode>
+    <DayStartTime>07:00:00</DayStartTime>
+    <DayEndTime>19:00:00</DayEndTime>
+    <Sensitivity>99</Sensitivity>
+    <SwitchTime>3</SwitchTime>
+    <IrCutReverse>positive</IrCutReverse>
+    <ColorLastTime>30</ColorLastTime>
+    <ImageMode>licenseplate</ImageMode>
+    <VariableInfraredThreshold>35</VariableInfraredThreshold>
+    <VariableWhiteThreshold>40</VariableWhiteThreshold>
+</IrCutFillter>
