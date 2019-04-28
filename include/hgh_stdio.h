@@ -194,3 +194,30 @@ extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
 
 extern void setlinebuf (FILE *__stream) __THROW;
 #endif
+
+extern int fprintf (FILE *__restrict __stream, 
+            const char *__restrict __format, ...);
+
+extern int printf (const char *__restrict __format, ...);
+extern int sprintf (char *__restrict __s, 
+            const char *__restrict __format, ...);
+
+extern int vfprintf (FILE *__restrict __s, const char *__restrict __format, 
+                _G_va_list __arg);
+
+extern int vprintf (const char *__restrict __format, _G_va_list __arg);
+
+extern int vsprintf (char *__restrict __s, const char *__restrict __format,
+                _G_va_list __arg) __THROW;
+
+#if defined __USE_ISOC99 || defined __USE_UNIX98
+
+extern int snprintf (char *__restrict __s, size_t __maxlen,
+            const char *__restrict __format, ...)
+            __THROWNL __attribute__ ((__format__ (__printf__, 3, 4)));
+
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+            const char *__restrict __format, _G_va_list __arg)
+            __THROWNL __attribute__ ((__format__ (__printf__, 3, 0)));
+
+#endif 
