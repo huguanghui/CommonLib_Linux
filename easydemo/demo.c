@@ -35,6 +35,35 @@
 // 46: 深绿                         36: 深绿
 // 47：白色                         37：白色
 
+void HexOutput(void *buf, size_t len)
+{
+    char *b = (char*)buf;
+    int numRow = 0;
+    int numCol = 0;
+
+    printf("Hen[%p]Len[%d]:\n", buf, len);
+    for(size_t i=0; i<len; i=i+16)
+    {
+        printf("%p|", b+i);
+        numCol = (len-i>=16) ? 16 : (len-i);    
+        int j = 0;
+        for (j = 0; j < numCol; j++)
+        {
+            unsigned char c = b[i+j]; // must use unsigned char to print >128 value
+            if( c < 16)
+            {
+                printf(" 0%x", c);
+            }
+            else
+            {
+                printf(" %x", c);
+            }
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
 int main(int argc, char *argv[])
 {
     int pagesize = getpagesize();
@@ -46,25 +75,24 @@ int main(int argc, char *argv[])
     // TRC_PG("abc\n");
     // TRC_PR("abc\n");
     // HGH_DBG("abc\n");
-    int i = 0;
-    int n = 0;
+    // int i = 0;
+    // int n = 0;
 
-    for (n = 0; n < 20; n ++)
-    {
-        if (i++ > 3)
-        {
-            HGH_DBG("I:%d\n", i);
-            break;
-        }
-    }
-    ngx_pool_t *pool = NULL;
-    pool = ngx_create_pool(1024);
-
-    ngx_destroy_pool(pool);
-
-    HGH_DBG("I:%d\n", i);
-
-    HGH_DBG_CHAR("abc\n");
+    // for (n = 0; n < 20; n ++)
+    // {
+    //     if (i++ > 3)
+    //     {
+    //         HGH_DBG("I:%d\n", i);
+    //         break;
+    //     }
+    // }
+    // ngx_pool_t *pool = NULL;
+    // pool = ngx_create_pool(1024);
+    // ngx_destroy_pool(pool);
+    // HGH_DBG("I:%d\n", i);
+    // HGH_DBG_CHAR("abc\n");
+    char b[21] = {0};
+    HexOutput(&b, sizeof(b));
 
     return 0;
 }
