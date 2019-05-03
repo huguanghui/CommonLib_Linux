@@ -1,51 +1,73 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <unistd.h>
-#include <stddef.h>
-
-#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
-
-#define QLEN (10)
-
-int main(int argc, char const *argv[])
-{
-    int fd;
-    int listenfd;
-    socklen_t size;
-    struct sockaddr_un un;
-
-    // 1.创建套接字
-    fd = socket(AF_UNIX, SOCK_STREAM, 0);
-    un.sun_family = AF_UNIX;
-    snprintf(un.sun_path, sizeof(un.sun_path), "/tmp/unix.tmp.1");
-
-    size = offsetof(struct sockaddr_un, sun_path) + strlen(un.sun_path);
-    bind(fd, (struct sockaddr *)&un, size);
-
-    listenfd = listen(fd, QLEN);
-
-    while (1)
-    {
-        struct sockaddr_un uncli;
-        socklen_t len;
-        int clifd;
-
-        len = sizeof(uncli);
-        if (clifd = accept(fd, (struct sockaddr *)&uncli, &len))
-        {
-            char buf[1024];
-            ssize_t readlen;
-            readlen = read(clifd, buf, sizeof(buf));
-            buf[readlen] = '\0';
-            HGH_DBG("Read[%ld]:%s\n", readlen, buf);
-        }
-        close(clifd);
-    }
-
-    close(listenfd);
-    close(fd);
-
-    return 0;
-}
+#include <stdlib.h>  
+#include <stdio.h>  
+#include <stddef.h>  
+#include <sys/socket.h>  
+#include <sys/un.h>  
+#include <errno.h>  
+#include <string.h>  
+#include <unistd.h>  
+#include <ctype.h>   
+ 
+#define MAXLINE 80  
+ 
+char *socket_path = "server.socket";  
+ 
+int main(void)  
+{  
+    struct sockaddr_un serun, cliun;  
+    socklen_t cliun_len;  
+    int listenfd, connfd, size;  
+    char buf[MAXLINE];  
+    int i, n;  
+ 
+    if ((listenfd = socket(AF_UNIX, SOCK_STREAM, 0)) < 0) {  
+        perror("socket error");  
+        exit(1);  
+    }  
+ 
+    memset(&serun, 0, sizeof(serun));  
+    serun.sun_family = AF_UNIX;  
+    strcpy(serun.sun_path, socket_path);  
+    size = offsetof(struct sockaddr_un, sun_path) + strlen(serun.sun_path);  
+    unlink(socket_path);  
+    if (bind(listenfd, (struct sockaddr *)&serun, size) < 0) {  
+        perror("bind error");  
+        exit(1);  
+    }  
+    printf("UNIX domain socket bound\n");  
+      
+    if (listen(listenfd, 20) < 0) {  
+        perror("listen error");  
+        exit(1);          
+    }  
+    printf("Accepting connections ...\n");  
+ 
+    while(1) {  
+        cliun_len = sizeof(cliun);         
+        if ((connfd = accept(listenfd, (struct sockaddr *)&cliun, &cliun_len)) < 0){  
+            perror("accept error");  
+            continue;  
+        }  
+          
+        while(1) {  
+            n = read(connfd, buf, sizeof(buf));  
+            if (n < 0) {  
+                perror("read error");  
+                break;  
+            } else if(n == 0) {  
+                printf("EOF\n");  
+                break;  
+            }  
+              
+            printf("received: %s", buf);  
+ 
+            for(i = 0; i < n; i++) {  
+                buf[i] = toupper(buf[i]);  
+            }  
+            write(connfd, buf, n);  
+        }  
+        close(connfd);  
+    }  
+    close(listenfd);  
+    return 0;  
+} 
