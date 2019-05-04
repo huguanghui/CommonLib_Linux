@@ -10,8 +10,9 @@
  
 #define MAXLINE 80  
  
-char *socket_path = "server.socket";  
- 
+//char *socket_path = "server.socket";  
+char *socket_path = "/dev/shm/demo.sock"; 
+
 int main(void)  
 {  
     struct sockaddr_un serun, cliun;  
@@ -42,7 +43,7 @@ int main(void)
     }  
     printf("Accepting connections ...\n");  
  
-    while(1) {  
+    while(1) {   
         cliun_len = sizeof(cliun);         
         if ((connfd = accept(listenfd, (struct sockaddr *)&cliun, &cliun_len)) < 0){  
             perror("accept error");  

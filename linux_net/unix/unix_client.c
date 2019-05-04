@@ -10,7 +10,9 @@
 #define MAXLINE 80  
  
 char *client_path = "client.socket";  
-char *server_path = "server.socket";  
+//char *server_path = "server.socket";  
+//char *server_path = "/dev/shm/demo.sock";  
+char *server_path = "/tmp/fcgi.sock";  
  
 int main() {  
     struct  sockaddr_un cliun, serun;  

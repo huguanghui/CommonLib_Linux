@@ -7,6 +7,6 @@ include_directories(${FCGI_DIR}/include)
 find_library(FCGI_LIBRARY fcgi PATHS ${FCGI_DIR}/lib_static)
 message(STATUS "FCGI_LIBRARY= " ${FCGI_LIBRARY})
 
-add_executable(${TARGET} test.c)
+add_executable(${TARGET} test01.c)
 #target_link_libraries(demo pthread)
 target_link_libraries(${TARGET} ${FCGI_LIBRARY})
