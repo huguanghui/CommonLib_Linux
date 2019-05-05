@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+#include <sys/time.h>
+
 #include "data_struct/ngx_pool/ngx_pool.h"
 
 //仅仅是打印函数名字替换 DEBUG <--> printf
@@ -64,6 +66,18 @@ void HexOutput(void *buf, size_t len)
     printf("\n");
 }
 
+static char *util_getlocaltime()
+{
+    char localtime[32] = {0};
+    char *strRc = (char *)localtime;
+
+    struct timeval tv;
+    struct timezone tz;
+    gettimeofday (&tv, &tz);
+
+    return strRc;
+}
+
 int main(int argc, char *argv[])
 {
     int pagesize = getpagesize();
@@ -91,8 +105,21 @@ int main(int argc, char *argv[])
     // ngx_destroy_pool(pool);
     // HGH_DBG("I:%d\n", i);
     // HGH_DBG_CHAR("abc\n");
-    char b[21] = {0};
-    HexOutput(&b, sizeof(b));
+    struct timeval start_time, over_time, consume_time;
+    gettimeofday(&start_time, NULL);
+    {
+        char b[21] = {0};
+        HexOutput(&b, sizeof(b));
+    }
+    gettimeofday(&over_time, NULL);
+    consume_time.tv_usec = over_time.tv_usec - start_time.tv_usec;
+    consume_time.tv_sec = over_time.tv_sec - start_time.tv_sec;
+    if (consume_time.tv_usec < 0)
+    {
+        consume_time.tv_sec --;
+        consume_time.tv_usec += 1000000;
+    }
+    HGH_DBG("Hex Cost Time[%ld\t%ld]\n", consume_time.tv_sec, consume_time.tv_usec);
 
     return 0;
 }
