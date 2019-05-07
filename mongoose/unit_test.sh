@@ -10,7 +10,7 @@ cleanup() {
   kill -9 $PID >/dev/null 2>&1
 }
 
-set -x
+#set -x
 trap cleanup EXIT
 
 cleanup
