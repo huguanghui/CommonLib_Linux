@@ -5,7 +5,7 @@
 
 #include <sys/time.h>
 
-#include "data_struct/ngx_pool/ngx_pool.h"
+//#include "data_struct/ngx_pool/ngx_pool.h"
 
 //仅仅是打印函数名字替换 DEBUG <--> printf
 #define DEBUG(format, ...) printf(format, ##__VA_ARGS__)
@@ -22,7 +22,7 @@
 //名字替换，并在打印出来的内容加上前缀,同时加入定位的功能，并让打印的前缀具备特殊颜色
 #define TRC_PR(fmt, args...) fprintf(stderr, "\033[1;31m  TRC_PR(%s:%d):\t\033[0m" fmt, __func__, __LINE__, ## args)
 
-//#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
+#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
 
 #define HGH_DBG_CHAR(fmt, args...) do {printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args); getchar();}while(0)
 
@@ -44,7 +44,8 @@ void HexOutput(void *buf, size_t len)
     int numCol = 0;
 
     printf("Hen[%p]Len[%d]:\n", buf, len);
-    for(size_t i=0; i<len; i=i+16)
+    size_t i = 0;
+    for(i=0; i<len; i=i+16)
     {
         printf("%p|", b+i);
         numCol = (len-i>=16) ? 16 : (len-i);    
@@ -78,48 +79,89 @@ static char *util_getlocaltime()
     return strRc;
 }
 
-int main(int argc, char *argv[])
+// int main(int argc, char *argv[])
+// {
+//     int pagesize = getpagesize();
+//     printf("PageSize: %d\n", pagesize);
+
+//     // DEBUG("abc\n");
+//     // XFUNC_PRINT("abc\n");
+//     // TRC_P("abc\n");
+//     // TRC_PG("abc\n");
+//     // TRC_PR("abc\n");
+//     // HGH_DBG("abc\n");
+//     // int i = 0;
+//     // int n = 0;
+
+//     // for (n = 0; n < 20; n ++)
+//     // {
+//     //     if (i++ > 3)
+//     //     {
+//     //         HGH_DBG("I:%d\n", i);
+//     //         break;
+//     //     }
+//     // }
+//     // ngx_pool_t *pool = NULL;
+//     // pool = ngx_create_pool(1024);
+//     // ngx_destroy_pool(pool);
+//     // HGH_DBG("I:%d\n", i);
+//     // HGH_DBG_CHAR("abc\n");
+//     struct timeval start_time, over_time, consume_time;
+//     gettimeofday(&start_time, NULL);
+//     {
+//         char b[21] = {0};
+//         HexOutput(&b, sizeof(b));
+//     }
+//     gettimeofday(&over_time, NULL);
+//     consume_time.tv_usec = over_time.tv_usec - start_time.tv_usec;
+//     consume_time.tv_sec = over_time.tv_sec - start_time.tv_sec;
+//     if (consume_time.tv_usec < 0)
+//     {
+//         consume_time.tv_sec --;
+//         consume_time.tv_usec += 1000000;
+//     }
+//     HGH_DBG("Hex Cost Time[%ld\t%ld]\n", consume_time.tv_sec, consume_time.tv_usec);
+
+//     return 0;
+// }
+
+int main(int argc, char const *argv[])
 {
-    int pagesize = getpagesize();
-    printf("PageSize: %d\n", pagesize);
+    /* 轮询当前进程的环境变量 */
+    // extern char **environ;
+    // int i;
 
-    // DEBUG("abc\n");
-    // XFUNC_PRINT("abc\n");
-    // TRC_P("abc\n");
-    // TRC_PG("abc\n");
-    // TRC_PR("abc\n");
-    // HGH_DBG("abc\n");
-    // int i = 0;
-    // int n = 0;
-
-    // for (n = 0; n < 20; n ++)
+    // for (i=0; environ[i] != NULL; i++)
     // {
-    //     if (i++ > 3)
-    //     {
-    //         HGH_DBG("I:%d\n", i);
-    //         break;
-    //     }
+    //     HGH_DBG("%s\n", environ[i]);
     // }
-    // ngx_pool_t *pool = NULL;
-    // pool = ngx_create_pool(1024);
-    // ngx_destroy_pool(pool);
-    // HGH_DBG("I:%d\n", i);
-    // HGH_DBG_CHAR("abc\n");
-    struct timeval start_time, over_time, consume_time;
-    gettimeofday(&start_time, NULL);
-    {
-        char b[21] = {0};
-        HexOutput(&b, sizeof(b));
-    }
-    gettimeofday(&over_time, NULL);
-    consume_time.tv_usec = over_time.tv_usec - start_time.tv_usec;
-    consume_time.tv_sec = over_time.tv_sec - start_time.tv_sec;
-    if (consume_time.tv_usec < 0)
-    {
-        consume_time.tv_sec --;
-        consume_time.tv_usec += 1000000;
-    }
-    HGH_DBG("Hex Cost Time[%ld\t%ld]\n", consume_time.tv_sec, consume_time.tv_usec);
+
+    /* 获取和设置指定环境环境变量 */
+    char *s_path = getenv("PATH");
+    char *s_user = getenv("USER");
+
+    HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
+
+    char *s_hgh = NULL;
+    setenv("HGH", "123", 0);
+    s_hgh = getenv("HGH");
+    HGH_DBG("P[%p]\n", s_hgh);
+    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
+
+    setenv("HGH", "224", 0);
+    s_hgh = getenv("HGH");
+    HGH_DBG("P[%p]\n", s_hgh);
+    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
+
+    setenv("HGH", "224", 1);
+    s_hgh = getenv("HGH");
+    HGH_DBG("P[%p]\n", s_hgh);
+    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
+
+    unsetenv("HGH");
+    s_hgh = getenv("HGH");
+    HGH_DBG("P[%p]\n", s_hgh);
+    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
 
     return 0;
 }
