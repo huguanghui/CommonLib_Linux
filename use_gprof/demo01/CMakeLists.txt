@@ -1,5 +1,5 @@
 set(TAGET_DEMO01 gprof01)
-set(TAGET_DEMO01_LIST test_gprof.c test_gprof_new.c)
+set(TAGET_DEMO01_LIST test_gprof.c)
 
 add_definitions(-pg)
 
