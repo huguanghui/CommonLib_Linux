@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <time.h>
 
 #include <sys/time.h>
 
@@ -78,7 +79,15 @@ static char *util_getlocaltime()
 
     return strRc;
 }
+char const* echoTime()
+{
+    static char buf[200];
 
+    time_t tt = time(NULL);
+    strftime(buf, sizeof(buf), "Date: %a, %b %d %Y %H:%M:%S GMT", gmtime(&tt));
+
+    return buf;
+}
 // int main(int argc, char *argv[])
 // {
 //     int pagesize = getpagesize();
@@ -162,6 +171,9 @@ int main(int argc, char const *argv[])
     s_hgh = getenv("HGH");
     HGH_DBG("P[%p]\n", s_hgh);
     HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
+
+
+    HGH_DBG("Time[%s]\n", echoTime());
 
     return 0;
 }
