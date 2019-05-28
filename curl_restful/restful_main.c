@@ -46,6 +46,11 @@ typedef struct tagCurlRestfulData {
     CurlReadData readData;
 } CurlRestfulData;
 
+int Restful_get(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize);
+int Restful_put(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize);
+int Restful_post(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize);
+int Restful_delete(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize);
+
 /* parse headers for Content-Length */  
 static size_t GetHttpStatusFunc(void *ptr, size_t size, size_t nmemb, void *stream)   
 {
@@ -85,7 +90,7 @@ static size_t WriteFunc(void *ptr, size_t size, size_t nmemb, void *pUsrData)
         HGH_DBG("data->ptr[%p]\n", data->ptr);
     }
 
-    HGH_DBG("size[%d] nmemb[%d]\n", size, nmemb);
+    HGH_DBG("size[%ld] nmemb[%ld]\n", size, nmemb);
     memcpy(data->ptr + data->pos, ptr, size*nmemb);
     data->pos += size*nmemb;
     if (data->pos == restfulData->header.contentLength)
@@ -122,6 +127,16 @@ int HTTPRestful(HTTP_Method method, UserAuth* auth, const char* url, char* in, i
             iRet = Restful_put(auth, url, in, inSize, out, outSize);
         }
         break;
+    case HTTP_POST:
+        {
+            iRet = Restful_post(auth, url, in, inSize, out, outSize);
+        }
+        break;
+    case HTTP_DELETE:
+        {
+            iRet = Restful_delete(auth, url, in, inSize, out, outSize);
+        }
+        break;
     default:
         break;
     }
@@ -156,6 +171,7 @@ int Restful_get(UserAuth* auth, const char* url, char* in, int inSize, char** ou
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteFunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &restfulData);
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 3000L);
     //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data); 
     res = curl_easy_perform(curl);
     if (res != CURLE_OK)
@@ -183,7 +199,7 @@ size_t ReadFunc(char *bufptr, size_t size, size_t nitems, void *pUsrData)
     CurlRestfulData* restfulData = (CurlRestfulData*)pUsrData;
      CurlReadData* data = &restfulData->readData;
 
-    HGH_DBG("size[%d] nmemb[%d]\n", size, nitems);
+    HGH_DBG("size[%ld] nmemb[%ld]\n", size, nitems);
 
     int left = data->size - data->pos;
     int copyLen = (left >= size*nitems)?size*nitems:left;
@@ -219,17 +235,17 @@ int Restful_put(UserAuth* auth, const char* url, char* in, int inSize, char** ou
     struct curl_slist *headers = NULL;
     CURLcode res;
     CurlRestfulData restfulData;
-    FILE * hd_src;
-    struct stat file_info;
-    const char* file = "abc.txt";
+    // FILE * hd_src;
+    // struct stat file_info;
+    // const char* file = "abc.txt";
 
     memset(&restfulData, 0, sizeof(restfulData));
     restfulData.readData.ptr = in;
     restfulData.readData.size = inSize;
     restfulData.readData.pos = 0;
     
-    stat(file, &file_info);
-    hd_src = fopen(file, "rb");
+    // stat(file, &file_info);
+    // hd_src = fopen(file, "rb");
     curl = curl_easy_init();
 
     // 设置HTTP头
@@ -248,20 +264,21 @@ int Restful_put(UserAuth* auth, const char* url, char* in, int inSize, char** ou
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
     curl_easy_setopt(curl, CURLOPT_PUT, 1L);
-    curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-    //curl_easy_setopt(curl, CURLOPT_READFUNCTION, ReadFunc);
-    //curl_easy_setopt(curl, CURLOPT_READDATA, &restfulData);
-    // curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE, (curl_off_t)restfulData.readData.size);
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
-    curl_easy_setopt(curl, CURLOPT_READDATA, hd_src);
-    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
-                     (curl_off_t)file_info.st_size);
+    //curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, ReadFunc);
+    curl_easy_setopt(curl, CURLOPT_READDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE, (curl_off_t)restfulData.readData.size);
+    // curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
+    // curl_easy_setopt(curl, CURLOPT_READDATA, hd_src);
+    // curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+    //                  (curl_off_t)file_info.st_size);
     
     curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, GetHttpStatusFunc);
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &restfulData);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteFunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &restfulData);
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 3000L);
     res = curl_easy_perform(curl);
     if (res != CURLE_OK)
     {
@@ -277,7 +294,121 @@ int Restful_put(UserAuth* auth, const char* url, char* in, int inSize, char** ou
         *out = restfulData.writeData.ptr;
         *outSize = restfulData.writeData.size;
     }
-    fclose(hd_src);
+    // fclose(hd_src);
+    HGH_DBG("Status[%d] ContentLength[%d]\n", restfulData.header.status, restfulData.header.contentLength);
+
+    return 0;
+}
+
+int Restful_post(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize)
+{
+    CURL* curl = NULL;
+    struct curl_slist *headers = NULL;
+    CURLcode res;
+    CurlRestfulData restfulData;
+
+    memset(&restfulData, 0, sizeof(restfulData));
+    restfulData.readData.ptr = in;
+    restfulData.readData.size = inSize;
+    restfulData.readData.pos = 0;
+    
+
+    curl = curl_easy_init();
+
+    // 设置HTTP头
+    headers = curl_slist_append(headers, "Accept: ZOWELL");
+    if (auth != NULL)
+    {
+        char authInfo[128] = {0};
+        snprintf(authInfo, sizeof(authInfo), "%s:%s", auth->username, auth->password);
+        curl_easy_setopt(curl, CURLOPT_USERPWD, authInfo);
+    }
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
+    curl_easy_setopt(curl, CURLOPT_POST, 1L);
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, ReadFunc);
+    curl_easy_setopt(curl, CURLOPT_READDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, (curl_off_t)restfulData.readData.size);
+    curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, GetHttpStatusFunc);
+    curl_easy_setopt(curl, CURLOPT_HEADERDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteFunc);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 3000L);
+    res = curl_easy_perform(curl);
+    if (res != CURLE_OK)
+    {
+        fprintf(stderr, "curl_easy_perform() failed: %s\n", 
+                curl_easy_strerror(res));
+    }
+
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(curl);
+
+    if ((CURLE_OK == res) && (200 == restfulData.header.status))
+    {
+        *out = restfulData.writeData.ptr;
+        *outSize = restfulData.writeData.size;
+    }
+    HGH_DBG("Status[%d] ContentLength[%d]\n", restfulData.header.status, restfulData.header.contentLength);
+
+    return 0;
+}
+
+int Restful_delete(UserAuth* auth, const char* url, char* in, int inSize, char** out, int *outSize)
+{
+    CURL* curl = NULL;
+    struct curl_slist *headers = NULL;
+    CURLcode res;
+    CurlRestfulData restfulData;
+
+    memset(&restfulData, 0, sizeof(restfulData));
+    restfulData.readData.ptr = in;
+    restfulData.readData.size = inSize;
+    restfulData.readData.pos = 0;
+    
+
+    curl = curl_easy_init();
+
+    // 设置HTTP头
+    headers = curl_slist_append(headers, "Accept: ZOWELL");
+    if (auth != NULL)
+    {
+        char authInfo[128] = {0};
+        snprintf(authInfo, sizeof(authInfo), "%s:%s", auth->username, auth->password);
+        curl_easy_setopt(curl, CURLOPT_USERPWD, authInfo);
+    }
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
+    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, ReadFunc);
+    curl_easy_setopt(curl, CURLOPT_READDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, (curl_off_t)restfulData.readData.size);
+    curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, GetHttpStatusFunc);
+    curl_easy_setopt(curl, CURLOPT_HEADERDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteFunc);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &restfulData);
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 3000L);
+    res = curl_easy_perform(curl);
+    if (res != CURLE_OK)
+    {
+        fprintf(stderr, "curl_easy_perform() failed: %s\n", 
+                curl_easy_strerror(res));
+    }
+
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(curl);
+
+    if ((CURLE_OK == res) && (200 == restfulData.header.status))
+    {
+        *out = restfulData.writeData.ptr;
+        *outSize = restfulData.writeData.size;
+    }
     HGH_DBG("Status[%d] ContentLength[%d]\n", restfulData.header.status, restfulData.header.contentLength);
 
     return 0;
@@ -311,7 +442,11 @@ int main(int argc, char const *argv[])
     </Transport> \
 </StreamConfig>");
     //HTTPRestful(HTTP_GET, &auth, "http://192.168.6.98/Streams/1/CapabilityV2", request, sizeof(request), &response, &lens);
-    HTTPRestful(HTTP_PUT, &auth, "http://192.168.6.90:8080/test", request, strlen(request), &response, &lens);
+    //HTTPRestful(HTTP_GET, &auth, "http://localhost:8600/Net/NetworkInterface", request, strlen(request), &response, &lens);
+    //HTTPRestful(HTTP_GET, &auth, "http://192.168.3.125:3000/network", request, strlen(request), &response, &lens);
+    //HTTPRestful(HTTP_PUT, &auth, "http://localhost:8700/Net/NetworkInterface", request, strlen(request), &response, &lens);
+    //HTTPRestful(HTTP_POST, &auth, "http://localhost:8700/Net/NetworkInterface", request, strlen(request), &response, &lens);
+    HTTPRestful(HTTP_DELETE, &auth, "http://localhost:8700/Net/NetworkInterface", request, strlen(request), &response, &lens);
     if (response)
     {
         HGH_DBG("response[%p]\n", response);
