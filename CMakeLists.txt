@@ -39,4 +39,5 @@ add_subdirectory(mongoose)
 add_subdirectory(use_sqlite3)
 add_subdirectory(multi_pthread)
 add_subdirectory(use_gprof)
-#add_subdirectory(curl_restful)
+add_subdirectory(curl_restful)
+
