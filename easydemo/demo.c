@@ -79,7 +79,7 @@ static char *util_getlocaltime()
 
     return strRc;
 }
-char const* echoTime()
+static char const* echoTime()
 {
     static char buf[200];
 
@@ -88,6 +88,19 @@ char const* echoTime()
 
     return buf;
 }
+
+static char const* getTime()
+{
+    static char buf[200];
+    struct timeval tv;
+
+    gettimeofday(&tv, NULL);
+    snprintf(buf, sizeof(buf), "[%ld]s [%ld]us", tv.tv_sec, tv.tv_usec);
+
+    return buf;
+}
+
+#define HGH_TIME_DBG(fmt, args...) printf("\033[40;33m HGH_DBG[%s](%s %s %d):\t\033[0m"fmt, getTime(), __FILE__, __func__, __LINE__, ## args)
 // int main(int argc, char *argv[])
 // {
 //     int pagesize = getpagesize();
@@ -174,6 +187,7 @@ int main(int argc, char const *argv[])
 
 
     HGH_DBG("Time[%s]\n", echoTime());
+    HGH_TIME_DBG("\n");
 
     return 0;
 }
