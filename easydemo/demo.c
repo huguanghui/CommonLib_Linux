@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <time.h>
+#include <semaphore.h>
 
 #include <sys/time.h>
 
@@ -147,6 +148,11 @@ static char const* getTime()
 //     return 0;
 // }
 
+sem_t g_sem;
+//sem_init(&g_sem, 0, 0);
+//sem_post(&g_sem);
+//sem_wait(&g_sem);
+
 int main(int argc, char const *argv[])
 {
     /* 轮询当前进程的环境变量 */
@@ -164,30 +170,6 @@ int main(int argc, char const *argv[])
 
     HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
 
-    char *s_hgh = NULL;
-    setenv("HGH", "123", 0);
-    s_hgh = getenv("HGH");
-    HGH_DBG("P[%p]\n", s_hgh);
-    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
-
-    setenv("HGH", "224", 0);
-    s_hgh = getenv("HGH");
-    HGH_DBG("P[%p]\n", s_hgh);
-    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
-
-    setenv("HGH", "224", 1);
-    s_hgh = getenv("HGH");
-    HGH_DBG("P[%p]\n", s_hgh);
-    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
-
-    unsetenv("HGH");
-    s_hgh = getenv("HGH");
-    HGH_DBG("P[%p]\n", s_hgh);
-    HGH_DBG("HGH[%s]\n", s_hgh?s_hgh:"");
-
-
-    HGH_DBG("Time[%s]\n", echoTime());
-    HGH_TIME_DBG("\n");
 
     return 0;
 }
