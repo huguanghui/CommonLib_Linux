@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
     deviceFd = as_usbpipe_open();
 
     struct zw_uptp_message msg;
+    HGH_DBG("\n");
     info("[%s %d]Recv...\n", __FUNCTION__, __LINE__);
     zw_uptp_recive(deviceFd, &msg);
 
