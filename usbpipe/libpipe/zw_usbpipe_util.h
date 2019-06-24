@@ -14,18 +14,20 @@
 extern "C" {
 #endif
 
+#define HGH_DBG(fmt, args...) printf("\033[40;31m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
+
 #define USBPIPE_MAXSIZE (256 * 1024)
 
-void _msg(unsigned level, const char *fmt, ...);
+void _msg(unsigned level, const char* file, const char* fun, int line, const char *fmt, ...);
 
 void HexOutput(void *buf, size_t len);
 
-#define die(...)  (_msg(2, __VA_ARGS__), exit(1))
-#define err(...)   _msg(3, __VA_ARGS__)
-#define warn(...)  _msg(4, __VA_ARGS__)
-#define note(...)  _msg(5, __VA_ARGS__)
-#define info(...)  _msg(6, __VA_ARGS__)
-#define debug(...) _msg(7, __VA_ARGS__)
+#define die(...)  (_msg(2, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__), exit(1))
+#define err(...)   _msg(3, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define warn(...)  _msg(4, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define note(...)  _msg(5, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define info(...)  _msg(6, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define debug(...) _msg(7, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 typedef enum {
    MSG_TYPE_REQUEST = 0,

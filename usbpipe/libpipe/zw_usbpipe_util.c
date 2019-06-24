@@ -13,10 +13,19 @@ const char* getMsgTypeName(E_MSG_TYPE e)
   return g_arrMsgType[e];
 }
 
-static const char g_module_name[] = "usbpipe-host";
+static const char g_module_name[] = "usbpipe";
 static unsigned verbosity = 7;
 
-void _msg(unsigned level, const char *fmt, ...)
+static char* getFileName(char *p)
+{
+    char ch = '/';
+    char *q = strrchr(p, ch) + 1;
+
+    return q;
+}
+
+void _msg(unsigned level, const char* file, const char* fun, int line,
+        const char *fmt, ...)
 {
 	if (level < 2)
 		level = 2;
@@ -25,18 +34,28 @@ void _msg(unsigned level, const char *fmt, ...)
 
 	if (level <= verbosity) {
 		static const char levels[8][6] = {
-			[2] = "crit:",
-			[3] = "err: ",
-			[4] = "warn:",
-			[5] = "note:",
-			[6] = "info:",
-			[7] = "dbg: "
+			[2] = "crit",
+			[3] = "err",
+			[4] = "warn",
+			[5] = "note",
+			[6] = "info",
+			[7] = "dbg"
 		};
+		static const char color[8][6] = {
+			[2] = "32",
+			[3] = "31",
+			[4] = "35",
+			[5] = "34",
+			[6] = "37",
+			[7] = "32"
+		};
+
 
 		int _errno = errno;
 		va_list ap;
 
-		fprintf(stderr, "%s: %s ", g_module_name, levels[level]);
+        fprintf(stderr, "\033[40;%sm[%s: %s]-[%s-%s:%d] ", color[level], g_module_name, levels[level], getFileName(file), fun, line);
+
 		va_start(ap, fmt);
 		vfprintf(stderr, fmt, ap);
 		va_end(ap);
@@ -46,10 +65,12 @@ void _msg(unsigned level, const char *fmt, ...)
 			strerror_r(_errno, buffer, sizeof buffer);
 			fprintf(stderr, ": (-%d) %s\n", _errno, buffer);
 		}
+        fprintf(stderr, "\033[0m");
 
 		fflush(stderr);
 	}
 }
+
 
 void HexOutput(void *buf, size_t len)
 {
