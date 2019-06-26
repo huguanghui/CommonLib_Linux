@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "alist.h"
 
 void test()
@@ -20,7 +22,7 @@ int alist_init(ALIST_T* list)
     return iRet;
 }
 
-void* soap_malloc(ALIST_T* list, size_t n)
+void* alist_malloc(ALIST_T* list, size_t n)
 {
     char* p = NULL;
 
@@ -38,7 +40,7 @@ void* soap_malloc(ALIST_T* list, size_t n)
         return NULL;
     }
     n += (-(long)n) & (sizeof(void*)-1);
-    p = (char*)calloc(n + sizeof(void*) + sizeof(size_t));
+    p = (char*)malloc(n + sizeof(void*) + sizeof(size_t));
     if (NULL == p) {
         return NULL; 
     }
@@ -48,15 +50,23 @@ void* soap_malloc(ALIST_T* list, size_t n)
     *(void**)(p+n) = list->memlist;
     *(size_t*)(p+n+sizeof(void*)) = n;
     list->memlist = p + n;
-    printf("[%ld]List:%p\n", n, *list);
+    printf("[addr:len][0x%p, %ld]\n", p, n);
     pthread_mutex_unlock(&list->mutex);
 
     return p;
 }
 
-void* soap_calloc(ALIST_T* list, size_t n)
+void* alist_calloc(ALIST_T* list, size_t n)
 {
+    char* p = NULL;
 
+    p = alist_malloc(list, n);
+    if (p != NULL)
+    {
+        memset(p, 0, n); 
+    }
+
+    return p;
 }
 
 char* alist_strdup(ALIST_T* list, const char* s)
@@ -107,9 +117,17 @@ void alist_dealloc(ALIST_T* list, void* p)
     else
     {
         char* q = NULL;
+
         while (list->memlist)
         {
-             q = (char*)
+             q = (char*)list->memlist;
+             if (*(unsigned short*)(q - sizeof(unsigned short)) != (unsigned short)SOAP_CANARY)
+             {
+                 break;
+             }
+             list->memlist = *(void**)q;
+             q -= *(size_t*)(q + sizeof(void*));
+             free(q);
         }
     }
     
@@ -133,6 +151,31 @@ void alist_uninit(ALIST_T* list)
 
 void echo_alist(ALIST_T* list)
 {
+    if (NULL == list)
+    {
+        return;
+    }
 
+    char* p = NULL;
+    int index = 0;
+
+    pthread_mutex_lock(&list->mutex);
+    while (list->memlist)
+    {
+        // 打印节点的分配的地址
+        p = list->memlist;
+        if (*(unsigned short*)(p - sizeof(unsigned short)) != (unsigned short)SOAP_CANARY)
+        {
+            break;
+        }
+        list->memlist = *(void**)p;
+        p -= *(size_t*)(p+sizeof(void*));
+        // 打印节点的序号
+        printf("[idx: node][%d: 0x%p]\n", index, p);
+        index++;
+    }
+    pthread_mutex_unlock(&list->mutex);
+    
+    return;
 }
 
