@@ -170,6 +170,8 @@ int main(int argc, char const *argv[])
 
     HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
 
+    char* tmp = "abcddddddddddddd";
+    HGH_DBG("%.*s test\n", 7, tmp);
 
     return 0;
 }
