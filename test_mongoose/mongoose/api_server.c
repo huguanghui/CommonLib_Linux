@@ -38,7 +38,15 @@ static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) {
         key.p = hm->uri.p + api_prefix.len;
         key.len = hm->uri.len - api_prefix.len;
         if (is_equal(&hm->method, &s_get_method)) {
-          db_op(nc, hm, &key, s_db_handle, API_OP_GET);
+            //db_op(nc, hm, &key, s_db_handle, API_OP_GET);
+            //mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n");
+            char *data = ""; 
+            mg_printf(nc,
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/plain\r\n"
+                "Content-Length: %d\r\n\r\n%s",
+                (int) strlen(data), data);
+    
         } else if (is_equal(&hm->method, &s_put_method)) {
           db_op(nc, hm, &key, s_db_handle, API_OP_SET);
         } else if (is_equal(&hm->method, &s_delele_method)) {

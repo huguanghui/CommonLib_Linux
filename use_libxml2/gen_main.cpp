@@ -34,6 +34,12 @@ int main()
     {
        cout<<"一个xml文档被创建,写入"<<nRel<<"个字节"<<endl;
     }
+    xmlChar *pt = NULL;
+    int len = 0;
+    //xmlDocDumpMemory(doc, &pt, &len);
+    xmlDocDumpFormatMemory(doc, &pt, &len, 1);
+    printf("Content:\n%.*s\n", len, pt);
+    free(pt);
     //释放文档内节点动态申请的内存
     xmlFreeDoc(doc);
     return 0;

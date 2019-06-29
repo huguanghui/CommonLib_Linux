@@ -41,4 +41,5 @@ add_subdirectory(multi_pthread)
 add_subdirectory(use_gprof)
 #add_subdirectory(curl_restful)
 add_subdirectory(test_alist)
+#add_subdirectory(test_libxml2)
 
