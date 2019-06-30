@@ -70,7 +70,7 @@ int HTTP_ON_USBPIPE_PUT(const char* user, const char* name, const char* url, con
 	return ret;
 }
 
-#define SERV_PORT 8880
+#define SERV_PORT 8000
 
 #define MG_BUFFER_SIZE 100
 
@@ -136,7 +136,7 @@ int main(int argc, char* argv[])
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    inet_pton(AF_INET, "192.168.3.125", &servaddr.sin_addr);
+    inet_pton(AF_INET, "192.168.3.145", &servaddr.sin_addr);
     servaddr.sin_port = htons(SERV_PORT);
     // 2. 与服务器建立连接
     connect(sockfd, (struct sockaddr*)&servaddr, sizeof(struct sockaddr));
@@ -146,11 +146,11 @@ int main(int argc, char* argv[])
     //struct mg_str sd = mg_mk_str("hello");
     gen_requeset(&send_buf, "/api/v1/a");
     printf("send[%.*s]\n", send_buf.len, send_buf.buf);
-    int len = write(sockfd, send_buf.buf, send_buf.len);
+    int len = send(sockfd, send_buf.buf, send_buf.len, 0);
     printf("writelen[%d]\n", len);
     // 4. 读数据
     char buf[1024];
-    n = read(sockfd, buf, 1024);
+    n = recv(sockfd, buf, 1024, 0);
     printf("recv[%.*s]\n", n, buf);
     // 5. 关闭套接字
     close(sockfd);
