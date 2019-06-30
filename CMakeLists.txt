@@ -9,7 +9,7 @@ set(cplusplus_common_minor 0)
 set(CXX_FLAGS
 -g
 -Wall
--Werror
+#-Werror
 -rdynamic
 )
 string(REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")

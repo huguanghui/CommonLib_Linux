@@ -4,6 +4,8 @@
  */
 
 #include "db_plugin.h"
+#include <libxml/parser.h>
+#include <libxml/tree.h>
 
 static const char *s_http_port = "8000";
 static struct mg_serve_http_opts s_http_server_opts;
@@ -27,6 +29,37 @@ static int is_equal(const struct mg_str *s1, const struct mg_str *s2) {
   return s1->len == s2->len && memcmp(s1->p, s2->p, s2->len) == 0;
 }
 
+void gen_response(char** resp, int *len)
+{
+    //定义文档和节点指针
+    xmlDocPtr doc = xmlNewDoc(BAD_CAST"1.0");
+    xmlNodePtr root_node = xmlNewNode(NULL,BAD_CAST"root");
+    //设置根节点
+    xmlDocSetRootElement(doc,root_node);
+    //在根节点中直接创建节点
+    xmlNewTextChild(root_node, NULL, BAD_CAST "newNode1", BAD_CAST "newNode1 content");
+    xmlNewTextChild(root_node, NULL, BAD_CAST "newNode2", BAD_CAST "newNode2 content");
+    xmlNewTextChild(root_node, NULL, BAD_CAST "newNode3", BAD_CAST "newNode3 content");
+    //创建一个节点，设置其内容和属性，然后加入根结点
+    xmlNodePtr node = xmlNewNode(NULL,BAD_CAST"node2");
+    xmlNodePtr content = xmlNewText(BAD_CAST"NODE CONTENT"); //注意不是xmlNewTextChild()
+    xmlAddChild(root_node,node);
+    xmlAddChild(node,content);
+    xmlNewProp(node,BAD_CAST"attribute",BAD_CAST "yes");
+    //创建一个儿子和孙子节点
+    node = xmlNewNode(NULL, BAD_CAST "son");
+    xmlAddChild(root_node,node);
+    xmlNodePtr grandson = xmlNewNode(NULL, BAD_CAST "grandson");
+    xmlAddChild(node,grandson);
+    xmlAddChild(grandson, xmlNewText(BAD_CAST "This is a grandson node"));
+    //存储xml文档
+    xmlDocDumpFormatMemory(doc, (xmlChar**)resp, len, 1);
+    //释放文档内节点动态申请的内存
+    xmlFreeDoc(doc);
+ 
+    return;
+}
+
 static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) {
   static const struct mg_str api_prefix = MG_MK_STR("/api/v1");
   struct http_message *hm = (struct http_message *) ev_data;
@@ -40,12 +73,14 @@ static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) {
         if (is_equal(&hm->method, &s_get_method)) {
             //db_op(nc, hm, &key, s_db_handle, API_OP_GET);
             //mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n");
-            char *data = ""; 
+            char *data;
+            int len;
+            gen_response(&data, &len);
             mg_printf(nc,
                 "HTTP/1.1 200 OK\r\n"
                 "Content-Type: text/plain\r\n"
                 "Content-Length: %d\r\n\r\n%s",
-                (int) strlen(data), data);
+                (int) len, data);
     
         } else if (is_equal(&hm->method, &s_put_method)) {
           db_op(nc, hm, &key, s_db_handle, API_OP_SET);
