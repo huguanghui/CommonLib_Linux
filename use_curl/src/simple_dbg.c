@@ -119,7 +119,7 @@ int main(void)
     /* example.com is redirected, so we tell libcurl to follow redirection */
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-    curl_easy_setopt(curl, CURLOPT_URL, "https://4627dc95-f6ee-41de-b9d2-b8bc4870f68b.mock.pstmn.io/Device");
+    curl_easy_setopt(curl, CURLOPT_URL, "http://4627dc95-f6ee-41de-b9d2-b8bc4870f68b.mock.pstmn.io/Device");
     res = curl_easy_perform(curl);
     /* Check for errors */
     if(res != CURLE_OK)
