@@ -6,6 +6,9 @@
 #include <semaphore.h>
 
 #include <sys/time.h>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 //#include "data_struct/ngx_pool/ngx_pool.h"
 
@@ -38,6 +41,12 @@
 // 45: 紫                           35: 紫
 // 46: 深绿                         36: 深绿
 // 47：白色                         37：白色
+
+typedef struct
+{
+    char addr[256];
+}stTest;
+
 
 void HexOutput(void *buf, size_t len)
 {
@@ -136,13 +145,13 @@ static char const* getTime()
 //         HexOutput(&b, sizeof(b));
 //     }
 //     gettimeofday(&over_time, NULL);
-//     consume_time.tv_usec = over_time.tv_usec - start_time.tv_usec;
-//     consume_time.tv_sec = over_time.tv_sec - start_time.tv_sec;
-//     if (consume_time.tv_usec < 0)
-//     {
-//         consume_time.tv_sec --;
-//         consume_time.tv_usec += 1000000;
-//     }
+    // consume_time.tv_usec = over_time.tv_usec - start_time.tv_usec;
+    // consume_time.tv_sec = over_time.tv_sec - start_time.tv_sec;
+    // if (consume_time.tv_usec < 0)
+    // {
+    //     consume_time.tv_sec --;
+    //     consume_time.tv_usec += 1000000;
+    // }
 //     HGH_DBG("Hex Cost Time[%ld\t%ld]\n", consume_time.tv_sec, consume_time.tv_usec);
 
 //     return 0;
@@ -152,6 +161,14 @@ sem_t g_sem;
 //sem_init(&g_sem, 0, 0);
 //sem_post(&g_sem);
 //sem_wait(&g_sem);
+
+void file_write(const char *s)
+{
+    std::ofstream openfile("frame_translate.txt", std::ios::app);
+    openfile.write(s, strlen(s));
+    openfile << "\n";
+    openfile.close();
+}
 
 int main(int argc, char const *argv[])
 {
@@ -172,6 +189,15 @@ int main(int argc, char const *argv[])
 
     char* tmp = "abcddddddddddddd";
     HGH_DBG("%.*s test\n", 7, tmp);
+    	
+    // file_write("abcdef");
+    // file_write("111111");
+    // file_write("1ccccdd");
+
+    stTest tmpT;
+    memset(&tmpT, 0, sizeof(stTest));
+    HGH_DBG("tmpT[%p]\n", tmpT.addr);
+    HGH_DBG("tmpT2[%p]\n", tmpT.addr+4);
 
     return 0;
 }
