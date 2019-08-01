@@ -27,9 +27,9 @@
 //名字替换，并在打印出来的内容加上前缀,同时加入定位的功能，并让打印的前缀具备特殊颜色
 #define TRC_PR(fmt, args...) fprintf(stderr, "\033[1;31m  TRC_PR(%s:%d):\t\033[0m" fmt, __func__, __LINE__, ## args)
 
-#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args)
+#define HGH_DBG(fmt, args...) printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m" fmt, __FILE__, __func__, __LINE__, ## args)
 
-#define HGH_DBG_CHAR(fmt, args...) do {printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m"fmt, __FILE__, __func__, __LINE__, ## args); getchar();}while(0)
+#define HGH_DBG_CHAR(fmt, args...) do {printf("\033[40;33m HGH_DBG(%s %s %d):\t\033[0m" fmt, __FILE__, __func__, __LINE__, ## args); getchar();}while(0)
 
 // 部分颜色代码:
 // 字背景颜色: 40--49                字颜色: 30--39
