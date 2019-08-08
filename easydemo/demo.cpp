@@ -199,5 +199,9 @@ int main(int argc, char const *argv[])
     HGH_DBG("tmpT[%p]\n", tmpT.addr);
     HGH_DBG("tmpT2[%p]\n", tmpT.addr+4);
 
+    int n = 1;
+    n = (n+1)%2;
+    HGH_DBG("N[%d]\n", n);
+
     return 0;
 }
