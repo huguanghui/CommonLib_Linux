@@ -42,4 +42,4 @@ add_subdirectory(use_gprof)
 #add_subdirectory(curl_restful)
 add_subdirectory(test_alist)
 #add_subdirectory(test_libxml2)
-
+add_subdirectory(common_utils)

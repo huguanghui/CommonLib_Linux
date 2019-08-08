@@ -1,7 +1,0 @@
-#add_subdirectory(sync_call)
-#add_subdirectory(test_tail_queue)
-add_subdirectory(test_api)
-#add_subdirectory(test_mbuf)
-# add_subdirectory(test_zw_str)
-#add_subdirectory(test_init_uninit)
-add_subdirectory(test_init)
