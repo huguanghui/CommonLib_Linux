@@ -10,6 +10,8 @@
 #include <fstream>
 #include <string.h>
 
+#include "test.h"
+
 //#include "data_struct/ngx_pool/ngx_pool.h"
 
 //仅仅是打印函数名字替换 DEBUG <--> printf
@@ -170,38 +172,45 @@ void file_write(const char *s)
     openfile.close();
 }
 
+// int main(int argc, char const *argv[])
+// {
+//     /* 轮询当前进程的环境变量 */
+//     // extern char **environ;
+//     // int i;
+
+//     // for (i=0; environ[i] != NULL; i++)
+//     // {
+//     //     HGH_DBG("%s\n", environ[i]);
+//     // }
+
+//     /* 获取和设置指定环境环境变量 */
+//     char *s_path = getenv("PATH");
+//     char *s_user = getenv("USER");
+
+//     HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
+
+//     char* tmp = "abcddddddddddddd";
+//     HGH_DBG("%.*s test\n", 7, tmp);
+    	
+//     // file_write("abcdef");
+//     // file_write("111111");
+//     // file_write("1ccccdd");
+
+//     stTest tmpT;
+//     memset(&tmpT, 0, sizeof(stTest));
+//     HGH_DBG("tmpT[%p]\n", tmpT.addr);
+//     HGH_DBG("tmpT2[%p]\n", tmpT.addr+4);
+
+//     int n = 1;
+//     n = (n+1)%2;
+//     HGH_DBG("N[%d]\n", n);
+
+//     return 0;
+// }
+
+
 int main(int argc, char const *argv[])
 {
-    /* 轮询当前进程的环境变量 */
-    // extern char **environ;
-    // int i;
-
-    // for (i=0; environ[i] != NULL; i++)
-    // {
-    //     HGH_DBG("%s\n", environ[i]);
-    // }
-
-    /* 获取和设置指定环境环境变量 */
-    char *s_path = getenv("PATH");
-    char *s_user = getenv("USER");
-
-    HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
-
-    char* tmp = "abcddddddddddddd";
-    HGH_DBG("%.*s test\n", 7, tmp);
-    	
-    // file_write("abcdef");
-    // file_write("111111");
-    // file_write("1ccccdd");
-
-    stTest tmpT;
-    memset(&tmpT, 0, sizeof(stTest));
-    HGH_DBG("tmpT[%p]\n", tmpT.addr);
-    HGH_DBG("tmpT2[%p]\n", tmpT.addr+4);
-
-    int n = 1;
-    n = (n+1)%2;
-    HGH_DBG("N[%d]\n", n);
-
+    test();
     return 0;
 }
