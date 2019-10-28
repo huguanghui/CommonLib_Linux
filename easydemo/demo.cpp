@@ -10,8 +10,8 @@
 #include <fstream>
 #include <string.h>
 
-#include "test.h"
-
+#include "mongo/mongoose.h"
+#include "log/log.h"
 //#include "data_struct/ngx_pool/ngx_pool.h"
 
 //仅仅是打印函数名字替换 DEBUG <--> printf
@@ -172,45 +172,78 @@ void file_write(const char *s)
     openfile.close();
 }
 
-// int main(int argc, char const *argv[])
-// {
-//     /* 轮询当前进程的环境变量 */
-//     // extern char **environ;
-//     // int i;
+typedef struct Header
+{
+    int type;
+    int seq;
+    int dataLen;
+}Msg_Header;
 
-//     // for (i=0; environ[i] != NULL; i++)
-//     // {
-//     //     HGH_DBG("%s\n", environ[i]);
-//     // }
+typedef struct Resp
+{
+    int status;
+}Msg_Resp;
 
-//     /* 获取和设置指定环境环境变量 */
-//     char *s_path = getenv("PATH");
-//     char *s_user = getenv("USER");
+static void ev_handler(struct mg_connection *nc, int ev, void *ev_data)
+{
+    struct mbuf *io = &nc->recv_mbuf;
 
-//     HGH_DBG("PATH[%s] USER[%s]\n", s_path?s_path:"", s_user?s_user:"");
+    switch (ev) {
+        case MG_EV_RECV:
+            char tmp[128];
+            mg_conn_addr_to_str(nc, tmp, sizeof(tmp), MG_SOCK_STRINGIFY_IP|MG_SOCK_STRINGIFY_PORT|MG_SOCK_STRINGIFY_REMOTE);
+            mylog(DEBUG, "Remote[%s]", tmp);
+            if (io->len == sizeof(Msg_Header))
+            {
+                Msg_Header *header = (Msg_Header*)io->buf;
+                Msg_Resp resp;
+                resp.status = 1;
+                mg_send(nc, &resp, sizeof(Msg_Resp));
+            }
+            mbuf_remove(io, io->len);
+            break;
+        default:
+            break;
+    }
+    return;
+}
 
-//     char* tmp = "abcddddddddddddd";
-//     HGH_DBG("%.*s test\n", 7, tmp);
-    	
-//     // file_write("abcdef");
-//     // file_write("111111");
-//     // file_write("1ccccdd");
+static void server_net()
+{
+    struct mg_mgr mgr;
 
-//     stTest tmpT;
-//     memset(&tmpT, 0, sizeof(stTest));
-//     HGH_DBG("tmpT[%p]\n", tmpT.addr);
-//     HGH_DBG("tmpT2[%p]\n", tmpT.addr+4);
+    // 1.初始化事件管理器
+    mg_mgr_init(&mgr, NULL);
 
-//     int n = 1;
-//     n = (n+1)%2;
-//     HGH_DBG("N[%d]\n", n);
+    // 2.创建connection
+    mg_bind(&mgr, "1234", ev_handler);
+    // 3.事件轮训
+    for (;;)
+    {
+        mg_mgr_poll(&mgr, 1000);
+    }
+    mg_mgr_free(&mgr);
 
-//     return 0;
-// }
-
+    return ;
+}
 
 int main(int argc, char const *argv[])
 {
-    test();
+    /* 轮询当前进程的环境变量 */
+    // extern char **environ;
+    // int i;
+
+    // for (i=0; environ[i] != NULL; i++)
+    // {
+    //     HGH_DBG("%s\n", environ[i]);
+    // }
+
+    /* 获取和设置指定环境环境变量 */
+    // char *s_path = getenv("PATH");
+    // char *s_user = getenv("USER");
+    init_log("easy_demo");
+
+    server_net();
+
     return 0;
 }

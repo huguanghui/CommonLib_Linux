@@ -12,13 +12,14 @@ set(CXX_FLAGS
 #-Werror
 -rdynamic
 )
+
 string(REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 
 set(CMAKE_CXX_FLAGS_DEBUG "-O0")
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
-set(HOME_DIR /home/hgh)
+set(HOME_DIR /root)
 
 message(STATUS "CMAKE_CXX_FLAGS = " ${CMAKE_CXX_FLAGS})
 message(STATUS "CMAKE_C_FLAGS = " ${CMAKE_C_FLAGS})
@@ -48,4 +49,5 @@ add_subdirectory(easydemo)
 #add_subdirectory(test_libxml2)
 # add_subdirectory(common_utils)
 #add_subdirectory(check_endian)
-#add_subdirectory(lib_mongoose)
+# add_subdirectory(lib_mongoose)
+# add_subdirectory(lib_log)

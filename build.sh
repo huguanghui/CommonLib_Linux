@@ -6,7 +6,7 @@ SOURCE_DIR=`pwd`
 BUILD_DIR=${BUILD_DIR:-./build}
 BUILD_TYPE=${BUILD_TYPE:-debug}
 # INSTALL_DIR=${INSTALL_DIR:-../${BUILD_TYPE}-install}
-INSTALL_DIR=${INSTALL_DIR:-/home/hgh}
+INSTALL_DIR=${INSTALL_DIR:-/root}
 
 mkdir -p $BUILD_DIR/$BUILD_TYPE \
     && cd $BUILD_DIR/$BUILD_TYPE \
