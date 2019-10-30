@@ -243,7 +243,12 @@ int main(int argc, char const *argv[])
     // char *s_user = getenv("USER");
     init_log("easy_demo");
 
-    server_net();
+    time_t t = time(NULL);
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    mylog(DEBUG, "time_t[%ld] timeval[%ld]\n", t, tv.tv_sec);
+
+    // server_net();
 
     return 0;
 }
