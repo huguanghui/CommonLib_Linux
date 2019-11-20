@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# env check script (c) hugh
+#
+
+error_exit() {
+    print_error "$@""
+    exit 1
+}
+
+do_compiler() {
+    local compiler = "$1"
+    shift
+    if test -n "$BASH_VERSION"; then eval '
+        echo >>config.log "
+funcs: ${FUNCNAME[*]}
+lines: ${BASH_LINENO[*]}"
+    '; fi
+    echo $compiler "$@"  >> config.log
+    $compiler "$@" >> config.log 2>&1 || return $?
+    if test "$werror" != "yes"; then
+        return 0
+    fi
+    case "$*" in
+        *-Werror*)
+            return 0
+        ;;
+    esac
+    echo $compiler -Werror "$@" >> config
+    $compiler -Werror "$@" >> config 2>&1 && return $?
+}
