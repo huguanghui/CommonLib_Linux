@@ -78,6 +78,7 @@ void HexOutput(void *buf, size_t len)
     printf("\n");
 }
 
+
 static char *util_getlocaltime()
 {
     char localtime[32] = {0};
