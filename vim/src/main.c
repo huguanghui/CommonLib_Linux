@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "macros.h"
 #include "vim.h"
 
 static mparm_T params;
