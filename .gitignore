@@ -53,3 +53,4 @@ dkms.conf
 build/
 .vscode/
 null
+.ycm_extra_conf.py
