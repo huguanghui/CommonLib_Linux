@@ -32,4 +32,6 @@ typedef struct
     int         clean;
 } mparm_T;
 
+#include "globals.h"
+
 #endif

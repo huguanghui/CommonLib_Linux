@@ -24,5 +24,6 @@ message(STATUS "CMAKE_CXX_FLAGS = " ${CMAKE_CXX_FLAGS})
 message(STATUS "PROJECT_SOURCE_DIR = " ${PROJECT_SOURCE_DIR})
 
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
