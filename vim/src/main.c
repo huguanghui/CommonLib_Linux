@@ -19,3 +19,16 @@ void main(int argc, char *argv[])
        } 
     }
 }
+
+static struct timeval pre_timeval;
+
+void time_msg(char *mesg, void *tv_start)
+{
+    static struct timeval start;
+    struct timeval now;
+
+    if (strstr(mesg, "STARTING") != NULL) {
+        gettimeofday(&start, NULL); 
+        pre_timeval = start;
+    }
+}
