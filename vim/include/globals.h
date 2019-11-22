@@ -6,4 +6,4 @@
 * Description:      全局变量
 *****************************************************************************/
 
-extern FILE *time_fd = NULL:
+extern FILE *time_fd = NULL;

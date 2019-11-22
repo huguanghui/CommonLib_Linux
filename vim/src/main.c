@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include <sys/time.h>
 #include "macros.h"
 #include "vim.h"
+
+void time_msg(char *mesg, void *tv_start);
 
 static mparm_T params;
 
@@ -14,10 +18,19 @@ void main(int argc, char *argv[])
     params.argv = argv;
 
     for (i = 0; i < argc; ++i) {
-       if (STRICMP(argv[i]) == 0) {
+       if (STRICMP(argv[i], "--clean") == 0) {
            params.clean = TRUE;
            break;
        } 
+    }
+
+    for ( i = 0; i < argc - 1; ++i)
+    {
+        if (STRICMP(argv[i], "--startuptime") == 0) {
+           time_fd = mch_fopen(argv[i + 1], "a");
+           TIME_MSG("--- VIM STARTING ---"); 
+           break;
+        }
     }
 }
 
@@ -50,7 +63,7 @@ void time_msg(char *mesg, void *tv_start)
 
             fprintf(time_fd, " clock elapsed:           other lines\n\n");
         }
-        gettimeofday(&now);
+        gettimeofday(&now, NULL);
         time_diff(&start, &now);
         if ((struct timeval *)tv_start != NULL)
         {
@@ -64,3 +77,4 @@ void time_msg(char *mesg, void *tv_start)
     }
     return;
 }
+

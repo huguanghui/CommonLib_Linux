@@ -20,6 +20,9 @@ typedef unsigned char char_u;
 
 #define STRICMP(d, s) strcasecmp((char*)(d), (char*)(s))
 
+#define mch_open(n, m, p) oepn((n), (m), (p))
+#define mch_fopen(n, p) fopen((n), (p))
+
 typedef struct 
 {
     int         argc;
