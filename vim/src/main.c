@@ -1,9 +1,12 @@
+#define EXTERN
+#include "vim.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <sys/time.h>
 #include "macros.h"
-#include "vim.h"
+
+static void parse_command_name(mparm_T *parmp);
 
 void time_msg(char *mesg, void *tv_start);
 
@@ -32,6 +35,13 @@ void main(int argc, char *argv[])
            break;
         }
     }
+    starttime = time(NULL);
+
+}
+
+void common_init(mparm_T *paramp)
+{
+
 }
 
 static struct timeval pre_timeval;
@@ -78,3 +88,8 @@ void time_msg(char *mesg, void *tv_start)
     return;
 }
 
+static void parse_command_name(mparm_T *parmp)
+{
+    char_u *initstr;     
+    initstr = gettail((char_u *)parmp->argv[0]);
+}

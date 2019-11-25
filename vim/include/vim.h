@@ -37,4 +37,17 @@ typedef struct
 
 #include "globals.h"
 
+#ifndef EXTERN
+# define EXTERN extern
+# define INIT(x)
+#else
+# ifndef INIT
+#  define INIT(x) x
+#  define DO_INIT
+#  define COMMA ,
+# endif
+#endif
+
+typedef time_t time_T;
+
 #endif
