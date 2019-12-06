@@ -39,6 +39,12 @@ void main(int argc, char *argv[])
 
 }
 
+/** 初始化操作
+ @param paramp[in] 需要初始化的结构体
+ @return NULL
+ @warning 传入参数不能为NULL
+ @todo 有待实现
+*/
 void common_init(mparm_T *paramp)
 {
 

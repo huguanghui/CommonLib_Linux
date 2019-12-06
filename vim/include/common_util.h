@@ -1,10 +1,10 @@
-/******************************************************************************
-* File:             common_util.h
-*
-* Author:           huguanghui  
-* Created:          11/20/19 
-* Description:      封装公共接口
-*****************************************************************************/
+/** @brief 公共基础结构和接口
+ *  @file common_util.h
+ *  @author huguanghui
+ *  @version v2.4.2
+ *  @date 2019-12-05 14:03
+ *  @note  暂无
+ */
 
 #ifndef __COMMON_UTIL_H__
 #define __COMMON_UTIL_H__
@@ -25,12 +25,18 @@ typedef unsigned int int_u;
     typedef  long long unsigned long_long_u_T;
 #endif
 
+/**
+ * @brief 测试结构体ABC_T
+ */
 typedef struct ABC
 {
     char *test;
     int len;
 } ABC_T;
 
+/**
+ * @brief 测试结构体ABC_T
+ */
 typedef struct AAA
 {
     char *test;
