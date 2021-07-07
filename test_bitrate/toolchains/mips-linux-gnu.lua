@@ -1,0 +1,7 @@
+toolchain("mips-linux-gnu")
+    set_kind("standalone")
+    set_sdkdir("/opt/mips-gcc472-glibc216-64bit")
+    set_bindir("/opt/mips-gcc472-glibc216-64bit/bin")
+    add_cxflags("-muclibc")
+    add_ldflags("-muclibc")
+toolchain_end()

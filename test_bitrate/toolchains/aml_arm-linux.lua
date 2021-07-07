@@ -1,0 +1,7 @@
+toolchain("aml-arm-linux")
+    set_kind("standalone")
+    set_sdkdir("/opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/")
+    set_bindir("/opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/")
+    -- add_cxflags("--sysroot=/root/amlogic_sdk_buildroot/aarch64-linux-gnu_sdk-buildroot/aarch64-linux-gnu/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -Os")
+    -- add_ldflags("--sysroot=/root/amlogic_sdk_buildroot/aarch64-linux-gnu_sdk-buildroot/aarch64-linux-gnu/sysroot")
+toolchain_end()

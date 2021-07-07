@@ -1,0 +1,233 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- NVIM STARTING ---
+000.377  000.366: locale set
+000.727  000.350: inits 1
+000.748  000.021: window checked
+000.795  000.047: parsing arguments
+000.861  000.066: expanding arguments
+000.914  000.053: inits 2
+001.435  000.521: init highlight
+001.436  000.002: waiting for UI
+002.280  000.844: done waiting for UI
+002.295  000.015: initialized screen early for UI
+002.746  000.036  000.036: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api.vim
+002.897  000.088  000.088: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/system.vim
+003.325  000.129  000.129: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/string.vim
+003.536  000.419  000.290: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/compatible.vim
+003.791  000.741  000.321: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/file.vim
+004.043  000.083  000.083: sourcing /usr/local/share/nvim/runtime/autoload/provider/pythonx.vim
+046.422  000.163  000.163: sourcing /usr/local/share/nvim/runtime/autoload/remote/host.vim
+046.508  042.593  042.347: sourcing /usr/local/share/nvim/runtime/autoload/provider/python3.vim
+046.662  000.123  000.123: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/util.vim
+046.779  000.018  000.018: sourcing /usr/local/share/nvim/runtime/autoload/provider.vim
+106.120  000.075  000.075: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/messletters.vim
+106.494  103.829  060.157: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim.vim
+111.087  000.071  000.071: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/logger.vim
+111.184  000.225  000.154: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/logger.vim
+111.361  000.058  000.058: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/tab.vim
+111.471  000.209  000.151: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/default.vim
+111.804  000.069  000.069: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers.vim
+111.936  000.096  000.096: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/autocomplete.vim
+112.169  000.107  000.107: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/signatures.vim
+112.319  000.305  000.198: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/checkers.vim
+112.487  000.064  000.064: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/format.vim
+112.727  000.096  000.096: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/number.vim
+112.810  000.221  000.124: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/password.vim
+112.944  000.085  000.085: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/list.vim
+113.165  000.155  000.155: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim.vim
+113.358  000.124  000.124: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/buffer.vim
+113.687  001.134  000.549: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/edit.vim
+113.984  000.068  000.068: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/highlight.vim
+114.057  000.284  000.215: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/ui.vim
+114.236  000.038  000.038: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/message.vim
+114.594  000.460  000.422: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core.vim
+114.727  000.052  000.052: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/banner.vim
+114.867  000.018  000.018: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/time.vim
+115.058  000.068  000.068: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/dict.vim
+115.130  000.177  000.108: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/neovim/floating.vim
+115.238  000.322  000.145: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/statusline.vim
+115.345  000.020  000.020: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/unicode/icon.vim
+115.412  000.026  000.026: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/language.vim
+115.660  000.066  000.066: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/iconv/bytes.vim
+115.764  000.253  000.187: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/iconv.vim
+115.842  000.386  000.132: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/json.vim
+116.246  000.014  000.014: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/guide/theme/gruvbox.vim
+116.380  001.588  000.803: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/statusline.vim
+116.693  000.237  000.237: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/tabline.vim
+116.844  000.087  000.087: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/commands.vim
+117.139  000.160  000.160: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/data/toml.vim
+117.334  000.394  000.234: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/custom.vim
+117.991  000.016  000.016: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/autocomplete.vim
+118.214  000.126  000.126: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/shell.vim
+123.151  004.790  004.790: sourcing /usr/local/share/nvim/runtime/autoload/provider/clipboard.vim
+123.399  000.062  000.062: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/window.vim
+123.569  000.333  000.271: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping.vim
+124.279  000.048  000.048: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/server.vim
+124.612  000.072  000.072: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/leader.vim
+124.817  000.053  000.053: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/g.vim
+125.219  000.037  000.037: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/z.vim
+125.776  000.253  000.253: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/space.vim
+135.673  000.031  000.031: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/vim/key.vim
+136.209  000.093  000.093: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/plugins/help.vim
+136.355  000.815  000.692: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/guide.vim
+137.473  000.154  000.154: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/plugins.vim
+137.745  000.214  000.214: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein.vim
+138.541  000.757  000.757: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein/util.vim
+141.648  000.021  000.021: sourcing /usr/local/share/nvim/runtime/ftoff.vim
+142.203  000.290  000.290: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein/autoload.vim
+142.687  000.371  000.371: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein/types/git.vim
+142.947  000.679  000.309: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein/parse.vim
+143.359  000.081  000.081: sourcing /home/hgh/.SpaceVim/bundle/dein.vim/autoload/dein/types/raw.vim
+151.669  000.022  000.022: sourcing /home/hgh/.SpaceVim//config/plugins_before/echodoc.vim
+165.447  009.533  009.533: sourcing /usr/local/share/nvim/runtime/autoload/provider/python.vim
+189.637  000.080  000.080: sourcing /home/hgh/.SpaceVim//config/plugins_before/vimfiler.vim
+202.119  000.061  000.061: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/mapping/gd.vim
+203.441  000.047  000.047: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/banner.vim
+203.731  000.014  000.014: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/statusline.vim
+204.538  000.014  000.014: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/layers/core/tabline.vim
+208.048  000.087  000.087: sourcing /home/hgh/.SpaceVim//config/plugins/nerdcommenter.vim
+208.365  000.242  000.242: sourcing /home/hgh/.SpaceVim//config/plugins/vim-startify.vim
+208.448  000.034  000.034: sourcing /home/hgh/.SpaceVim//config/plugins/vim-expand-region.vim
+208.864  000.309  000.309: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/unite/custom.vim
+209.038  000.083  000.083: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/unite/filters/matcher_default.vim
+209.479  000.185  000.185: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/vital/unite.vim
+209.789  000.185  000.185: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/vital/_unite/Prelude.vim
+210.055  000.922  000.552: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/unite/util.vim
+210.161  000.036  000.036: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/unite/filters/sorter_default.vim
+210.698  002.205  000.855: sourcing /home/hgh/.SpaceVim//config/plugins/unite.vim
+210.756  000.009  000.009: sourcing /home/hgh/.SpaceVim//config/plugins/gruvbox.vim
+210.876  000.074  000.074: sourcing /home/hgh/.SpaceVim//config/plugins/open-browser.vim
+210.940  000.019  000.019: sourcing /home/hgh/.SpaceVim//config/plugins/tagbar.vim
+211.309  000.271  000.271: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/configure.vim
+211.634  000.051  000.051: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/core.vim
+211.890  000.393  000.342: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/utils.vim
+212.032  000.575  000.182: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/compat.vim
+212.089  000.693  000.118: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/log.vim
+212.296  000.072  000.072: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/config.vim
+212.501  001.518  000.482: sourcing /home/hgh/.SpaceVim//config/plugins/neomake.vim
+217.612  004.849  004.849: sourcing /home/hgh/.SpaceVim/bundle/gruvbox/colors/gruvbox.vim
+219.143  000.099  000.099: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/autocmds.vim
+223.632  000.023  000.023: sourcing /home/hgh/.cache/vimfiles/.cache/init.vim/.dein/ftdetect/ftdetect.vim
+224.053  004.643  004.620: sourcing /usr/local/share/nvim/runtime/filetype.vim
+224.287  000.025  000.025: sourcing /home/hgh/.cache/vimfiles/.cache/init.vim/.dein/ftplugin.vim
+224.312  000.009  000.009: sourcing /usr/local/share/nvim/runtime/ftplugin.vim
+224.570  000.026  000.026: sourcing /usr/local/share/nvim/runtime/indent.vim
+225.584  000.243  000.243: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+226.764  000.192  000.192: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+231.279  006.400  005.965: sourcing /home/hgh/.SpaceVim/bundle/gruvbox/colors/gruvbox.vim
+232.668  007.851  001.451: sourcing /usr/local/share/nvim/runtime/syntax/synload.vim
+232.727  008.017  000.166: sourcing /usr/local/share/nvim/runtime/syntax/syntax.vim
+232.738  230.256  080.855: sourcing /home/hgh/.SpaceVim/main.vim
+232.745  230.312  000.057: sourcing /home/hgh/.config/nvim/init.vim
+232.750  000.143: sourcing vimrc file(s)
+233.313  000.290  000.290: sourcing /home/hgh/.SpaceVim/bundle/vim-textobj-user/autoload/textobj/user.vim
+234.255  001.314  001.024: sourcing /home/hgh/.SpaceVim/bundle/vim-textobj-line/plugin/textobj/line.vim
+235.139  000.483  000.483: sourcing /home/hgh/.SpaceVim/bundle/vim-easymotion/autoload/EasyMotion/highlight.vim
+235.201  000.869  000.386: sourcing /home/hgh/.SpaceVim/bundle/vim-easyoperator-line/plugin/easyoperator/line.vim
+235.386  000.026  000.026: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/setup.vim
+235.449  000.194  000.169: sourcing /home/hgh/.SpaceVim/bundle/neomake/plugin/neomake.vim
+235.964  000.461  000.461: sourcing /home/hgh/.SpaceVim/bundle/tagbar/plugin/tagbar.vim
+236.215  000.197  000.197: sourcing /home/hgh/.SpaceVim/bundle/open-browser.vim/plugin/openbrowser.vim
+237.905  001.621  001.621: sourcing /home/hgh/.SpaceVim/bundle/vim-textobj-indent/plugin/textobj/indent.vim
+238.193  000.103  000.103: sourcing /usr/local/share/nvim/runtime/plugin/matchparen.vim
+238.649  000.132  000.132: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup.vim
+238.801  000.067  000.067: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/perf.vim
+239.285  000.204  000.204: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/loader.vim
+239.735  000.278  000.278: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/matchparen.vim
+241.859  003.900  003.117: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/plugin/matchup.vim
+242.247  000.246  000.246: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/autoload/cmp.vim
+242.407  000.034  000.034: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/c.vim
+242.462  000.042  000.042: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/cpp.vim
+242.503  000.016  000.016: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/erlang.vim
+242.540  000.025  000.025: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/go.vim
+242.595  000.041  000.041: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/javascript.vim
+242.651  000.044  000.044: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/python.vim
+242.695  000.029  000.029: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/rust.vim
+242.741  000.033  000.033: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/cm_parser/typescript.vim
+243.120  001.194  000.685: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/plugin/complete_parameter.vim
+243.336  000.117  000.117: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/plugin/unite/bookmark.vim
+243.427  000.075  000.075: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/plugin/unite/buffer.vim
+243.515  000.074  000.074: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/plugin/unite/window.vim
+243.627  000.098  000.098: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/plugin/unite.vim
+243.948  000.268  000.268: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/plugin/editorconfig.vim
+244.505  000.195  000.195: sourcing /home/hgh/.SpaceVim/bundle/delimitMate/autoload/delimitMate.vim
+246.160  002.157  001.962: sourcing /home/hgh/.SpaceVim/bundle/delimitMate/plugin/delimitMate.vim
+246.438  000.139  000.139: sourcing /home/hgh/.SpaceVim/bundle/vim-expand-region/autoload/expand_region.vim
+246.536  000.320  000.181: sourcing /home/hgh/.SpaceVim/bundle/vim-expand-region/plugin/expand_region.vim
+246.636  000.046  000.046: sourcing /home/hgh/.SpaceVim/bundle/vimproc.vim/plugin/vimproc.vim
+246.821  000.129  000.129: sourcing /home/hgh/.SpaceVim/bundle/tabular/plugin/Tabular.vim
+252.010  005.137  005.137: sourcing /home/hgh/.SpaceVim/bundle/vim-easymotion/plugin/EasyMotion.vim
+252.162  000.091  000.091: sourcing /home/hgh/.SpaceVim/bundle/vim-startify/plugin/startify.vim
+252.945  000.722  000.722: sourcing /home/hgh/.SpaceVim/bundle/vim-table-mode/plugin/table-mode.vim
+253.014  000.017  000.017: sourcing /home/hgh/.SpaceVim/bundle/neoformat/plugin/neoformat.vim
+254.051  000.976  000.976: sourcing /home/hgh/.SpaceVim/bundle/vim-textobj-entire/plugin/textobj/entire.vim
+254.651  000.548  000.548: sourcing /home/hgh/.SpaceVim/bundle/vim-surround/plugin/surround.vim
+254.989  000.278  000.278: sourcing /home/hgh/.SpaceVim/bundle/clever-f.vim/plugin/clever-f.vim
+257.757  002.721  002.721: sourcing /home/hgh/.SpaceVim/bundle/nerdcommenter/plugin/NERD_commenter.vim
+257.838  000.028  000.028: sourcing /home/hgh/.cache/vimfiles/.cache/init.vim/.dein/plugin/deol.vim
+258.178  000.163  000.163: sourcing /usr/local/share/nvim/runtime/plugin/gzip.vim
+258.203  000.011  000.011: sourcing /usr/local/share/nvim/runtime/plugin/health.vim
+258.279  000.064  000.064: sourcing /usr/local/share/nvim/runtime/plugin/man.vim
+258.304  000.011  000.011: sourcing /usr/local/share/nvim/runtime/plugin/matchit.vim
+258.325  000.009  000.009: sourcing /usr/local/share/nvim/runtime/plugin/matchparen.vim
+258.651  000.316  000.316: sourcing /usr/local/share/nvim/runtime/plugin/netrwPlugin.vim
+259.049  000.095  000.095: sourcing /usr/local/share/nvim/runtime/autoload/remote/define.vim
+259.107  000.335  000.239: sourcing /home/hgh/.local/share/nvim/rplugin.vim
+259.112  000.437  000.102: sourcing /usr/local/share/nvim/runtime/plugin/rplugin.vim
+259.226  000.093  000.093: sourcing /usr/local/share/nvim/runtime/plugin/shada.vim
+259.274  000.022  000.022: sourcing /usr/local/share/nvim/runtime/plugin/spellfile.vim
+259.421  000.130  000.130: sourcing /usr/local/share/nvim/runtime/plugin/tarPlugin.vim
+259.505  000.064  000.064: sourcing /usr/local/share/nvim/runtime/plugin/tohtml.vim
+259.539  000.016  000.016: sourcing /usr/local/share/nvim/runtime/plugin/tutor.vim
+259.703  000.147  000.147: sourcing /usr/local/share/nvim/runtime/plugin/zipPlugin.vim
+260.478  002.692: loading plugins
+260.572  000.094: loading packages
+260.893  000.258  000.258: sourcing /home/hgh/.SpaceVim/bundle/indentLine/after/plugin/indentLine.vim
+260.967  000.007  000.007: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/after/plugin/matchit.vim
+261.029  000.014  000.014: sourcing /home/hgh/.SpaceVim/bundle/CompleteParameter.vim/after/plugin/compatible_with_ultisnips.vim
+261.385  000.136  000.136: sourcing /home/hgh/.SpaceVim/bundle/tabular/autoload/tabular.vim
+262.543  001.466  001.331: sourcing /home/hgh/.SpaceVim/bundle/tabular/after/plugin/TabularMaps.vim
+262.776  000.459: loading after plugins
+262.786  000.010: inits 3
+264.441  001.655: reading ShaDa
+266.238  000.260  000.260: sourcing /usr/local/share/nvim/runtime/autoload/dist/ft.vim
+266.799  000.123  000.123: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/api/job.vim
+266.891  000.283  000.160: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/plugins/searcher.vim
+267.684  000.698  000.698: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake/statusline.vim
+273.182  001.133  001.133: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar.vim
+273.374  000.065  000.065: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/debug.vim
+288.285  000.372  000.372: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/types/uctags.vim
+288.424  000.036  000.036: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/prototypes/typeinfo.vim
+294.360  000.071  000.071: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/prototypes/fileinfo.vim
+301.002  000.168  000.168: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/sorting.vim
+301.230  000.042  000.042: sourcing /home/hgh/.SpaceVim/bundle/tagbar/autoload/tagbar/state.vim
+302.679  000.073  000.073: sourcing /usr/local/share/nvim/runtime/ftplugin/c.vim
+303.080  000.083  000.083: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/util.vim
+307.721  004.794  004.710: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/after/ftplugin/c_matchup.vim
+308.787  000.021  000.021: sourcing /usr/local/share/nvim/runtime/indent/c.vim
+310.986  001.584  001.584: sourcing /usr/local/share/nvim/runtime/syntax/c.vim
+311.926  000.023  000.023: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/re.vim
+318.368  000.068  000.068: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig_core.vim
+318.578  000.071  000.071: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig_core/handler.vim
+318.773  000.046  000.046: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig_core/util.vim
+319.105  000.102  000.102: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig_core/ini.vim
+319.587  000.145  000.145: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig_core/fnmatch.vim
+328.113  000.042  000.042: sourcing /home/hgh/.SpaceVim/bundle/editorconfig-vim/autoload/editorconfig.vim
+331.531  000.033  000.033: sourcing /home/hgh/.SpaceVim/bundle/unite.vim/autoload/unite/sources/buffer/variables.vim
+331.890  057.318: opening buffers
+332.318  000.428: BufEnter autocommands
+332.320  000.003: editing files in windows
+334.781  000.673  000.673: sourcing /home/hgh/.SpaceVim/autoload/SpaceVim/plugins/projectmanager.vim
+335.657  002.664: VimEnter autocommands
+335.661  000.003: UIEnter autocommands
+335.662  000.002: before starting main loop
+336.549  000.795  000.795: sourcing /home/hgh/.SpaceVim/bundle/neomake/autoload/neomake.vim
+336.881  000.074  000.074: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/pos.vim
+337.452  000.261  000.261: sourcing /home/hgh/.SpaceVim/bundle/vim-matchup/autoload/matchup/delim.vim
+340.469  003.676: first screen update
+340.471  000.003: --- NVIM STARTED ---
