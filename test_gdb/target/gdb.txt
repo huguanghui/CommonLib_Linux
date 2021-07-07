@@ -1,0 +1,2 @@
+Undefined command: "ls".  Try "help".
+Undefined catch command: "gdb.txt".  Try "help catch".

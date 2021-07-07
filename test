@@ -1,1 +1,0 @@
-svn commit -m $'fix $(GUI) 修改TvOutSpec定制，基本配置界面都显示屏幕调节；Switchable显示同源勾选框，Copy/Standalone不显示\n视图配置界面：Standalone、Switchable都有TV-out选项'
