@@ -14,6 +14,8 @@ void rc_check(int ch);
 
 void rc_filled(int ch, const BitrateItem item);
 
+void rc_get_info(int ch, int *bitrate, float *fps);
+
 
 #ifdef __cplusplus
 };

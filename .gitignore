@@ -55,3 +55,4 @@ build/
 null
 .ycm_extra_conf.py
 .xmake
+.cache/
