@@ -1,0 +1,35 @@
+site_name: Linux知识积累
+docs_dir: docs
+site_url:
+use_directory_urls: False
+
+theme:
+  name: material
+  # logo: "img/favicon.ico"
+  palette:
+    primary: teal
+    accent: deep orange
+  language: zh
+  features:
+    - navigation.top
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+plugins:
+  - search
+  - mkdocstrings
+
+nav:
+  - 主页: index.md
+  - 编译相关:
+      - cmake框架: build/cmake.md
+  - 文件系统:
+      - uboot:
+          - 工程结构: bsp/uboot_st.md
+      - kernel:
+          - 工程结构: bsp/kernel_st.md
+  - 开源库:
+      - 网络相关:
+          - NTP对时: opensource/ntpd.md
+  - Q&A: qa.md
