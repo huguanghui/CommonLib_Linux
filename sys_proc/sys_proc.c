@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "proc_pid_status.h"
+#include "proc_uptime.h"
 
 #define BUF_SIZE 1024
 
@@ -47,12 +48,31 @@ static void getPidByName(pid_t *pid, char *task_name)
 
 int main(int argc, char *argv[])
 {
+    int rc;
     pid_t apps_pid = 0;
+    struct process_status apps_proc_status;
+    struct system_uptime up_ts, up_ts2;
 
-    getPidByName(&apps_pid, "apps");
+    ProcUptime(&up_ts);
+    getPidByName(&apps_pid, "ovf_srv");
     if (apps_pid > 0) {
-        ProcIdStatus(apps_pid);
+        rc = ProcPidStatus(apps_pid, &apps_proc_status);
+        if (!rc) {
+            printf("[HGH-TEST][%s %d] fdsize: %d\n", __FUNCTION__, __LINE__,
+                apps_proc_status.fdsize);
+            printf("[HGH-TEST][%s %d] threads: %d\n", __FUNCTION__, __LINE__,
+                apps_proc_status.threads);
+            printf("[HGH-TEST][%s %d] vmsize: %ld kb\n", __FUNCTION__, __LINE__,
+                apps_proc_status.vmsize);
+            printf("[HGH-TEST][%s %d] vmrss: %ld kb\n", __FUNCTION__, __LINE__,
+                apps_proc_status.vmrss);
+            printf("[HGH-TEST][%s %d] vmstk: %ld kb\n", __FUNCTION__, __LINE__,
+                apps_proc_status.vmstk);
+        }
     }
+    ProcUptime(&up_ts2);
+    printf("[HGH-TEST][%s %d] cost: %.4f\n", __FUNCTION__, __LINE__,
+        up_ts2.uptime - up_ts.uptime);
 
     return EXIT_SUCCESS;
 }
