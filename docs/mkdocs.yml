@@ -29,6 +29,9 @@ nav:
           - 工程结构: bsp/uboot_st.md
       - kernel:
           - 工程结构: bsp/kernel_st.md
+      - sysfs:
+          - proc:
+              - pid: bsp/sysfs_proc_pid.md
   - 开源库:
       - 网络相关:
           - NTP对时: opensource/ntpd.md
