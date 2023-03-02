@@ -6,7 +6,7 @@ command=mkdir build && cd build && cmake ..
 cwd=<root>
 
 [project-build]
-command=cmake --build build/debug
+command=./build.sh
 cwd=<root>
 errorformat=%. %#--> %f:%l:%c
 save=1
