@@ -7,6 +7,7 @@
 #include "proc_pid_status.h"
 #include "proc_uptime.h"
 #include "proc_pid_maps.h"
+#include "proc_pid_statm.h"
 
 #define BUF_SIZE 1024
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[])
     struct system_uptime up_ts, up_ts2;
 
     ProcUptime(&up_ts);
-    getPidByName(&apps_pid, "apps");
+    getPidByName(&apps_pid, "ovf_srv");
     if (apps_pid > 0) {
         rc = ProcPidStatus(apps_pid, &apps_proc_status);
         if (!rc) {
@@ -78,6 +79,24 @@ int main(int argc, char *argv[])
                 pid_maps[i].pathname);
         }
         printf("[HGH-TEST][%s %d] rc: %d\n", __FUNCTION__, __LINE__, rc);
+        struct process_statm pid_statm = { 0 };
+        rc = ProcPidStatm(apps_pid, &pid_statm);
+        if (!rc) {
+            printf("[HGH-TEST][%s %d] size: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.size);
+            printf("[HGH-TEST][%s %d] resident: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.resident);
+            printf("[HGH-TEST][%s %d] share: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.share);
+            printf("[HGH-TEST][%s %d] text: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.text);
+            printf("[HGH-TEST][%s %d] lib: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.lib);
+            printf("[HGH-TEST][%s %d] data: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.data);
+            printf("[HGH-TEST][%s %d] dt: %lu\n", __FUNCTION__, __LINE__,
+                pid_statm.dt);
+        }
     }
     ProcUptime(&up_ts2);
     printf("[HGH-TEST][%s %d] cost: %.4f\n", __FUNCTION__, __LINE__,
