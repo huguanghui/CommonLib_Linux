@@ -4,52 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void parse_status_file(int pid, struct process_status *status)
-{
-    char filename[256];
-    sprintf(filename, "/proc/%d/status", pid);
-    FILE *fp = fopen(filename, "r");
-    if (fp == NULL) {
-        perror("fopen");
-        exit(1);
-    }
-
-    char line[256];
-    while (fgets(line, sizeof(line), fp) != NULL) {
-        char *name = strtok(line, ":");
-        char *value = strtok(NULL, ":");
-        if (strcmp(name, "Name") == 0) {
-            // 进程名称
-            strncpy(status->name, value, sizeof(status->name));
-            status->name[sizeof(status->name) - 1] = '\0';
-        } else if (strcmp(name, "State") == 0) {
-            // 进程状态
-            strncpy(status->state, value, sizeof(status->state));
-            status->state[sizeof(status->state) - 1] = '\0';
-        } else if (strcmp(name, "Tgid") == 0) {
-            // 进程组ID
-            status->tgid = atoi(value);
-        } else if (strcmp(name, "Pid") == 0) {
-            // 进程ID
-            status->pid = atoi(value);
-        } else if (strcmp(name, "PPid") == 0) {
-            // 父进程ID
-            status->ppid = atoi(value);
-        } else if (strcmp(name, "TracerPid") == 0) {
-            // 跟踪器进程ID
-            status->tracer_pid = atoi(value);
-        } else if (strcmp(name, "Uid") == 0) {
-            // 用户ID
-            char *uid_real = strtok(value, "\t");
-            char *uid_effective = strtok(NULL, "\t");
-            char *uid_saved = strtok(NULL, "\t");
-            status->uid_real = atoi(uid_real);
-            status->uid_effective = atoi(uid_effective);
-            status->uid_saved = atoi(uid_saved);
-        }
-    }
-}
-
 int ProcPidStatus(int pid, struct process_status *status)
 {
     FILE *fp;

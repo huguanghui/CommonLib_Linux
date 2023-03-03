@@ -6,6 +6,7 @@
 
 #include "proc_pid_status.h"
 #include "proc_uptime.h"
+#include "proc_pid_maps.h"
 
 #define BUF_SIZE 1024
 
@@ -54,7 +55,7 @@ int main(int argc, char *argv[])
     struct system_uptime up_ts, up_ts2;
 
     ProcUptime(&up_ts);
-    getPidByName(&apps_pid, "ovf_srv");
+    getPidByName(&apps_pid, "apps");
     if (apps_pid > 0) {
         rc = ProcPidStatus(apps_pid, &apps_proc_status);
         if (!rc) {
@@ -69,6 +70,14 @@ int main(int argc, char *argv[])
             printf("[HGH-TEST][%s %d] vmstk: %ld kb\n", __FUNCTION__, __LINE__,
                 apps_proc_status.vmstk);
         }
+        struct process_maps pid_maps[128] = { 0 };
+        rc = ProcPidMaps(
+            apps_pid, pid_maps, sizeof(pid_maps) / sizeof(pid_maps[0]));
+        for (int i = 0; i < rc; i++) {
+            printf("[HGH-TEST][%s %d] %s\n", __FUNCTION__, __LINE__,
+                pid_maps[i].pathname);
+        }
+        printf("[HGH-TEST][%s %d] rc: %d\n", __FUNCTION__, __LINE__, rc);
     }
     ProcUptime(&up_ts2);
     printf("[HGH-TEST][%s %d] cost: %.4f\n", __FUNCTION__, __LINE__,

@@ -23,8 +23,10 @@ int ProcPidMaps(int pid, struct process_maps *maps, int size)
         if (idx >= size) {
             break;
         }
-        sscanf(buf, "%lx-%lx %4s %lx %*s %*s %*s", &maps[idx].start,
-            &maps[idx].end, maps[idx].perm, &maps[idx].offset);
+        sscanf(buf, "%lx-%lx %4s %lx %s %lu %s", &maps[idx].start_addr,
+            &maps[idx].end_addr, maps[idx].perms, &maps[idx].offset,
+            maps[idx].dev, &maps[idx].inode, maps[idx].pathname);
+
         idx++;
     }
     fclose(fp);
