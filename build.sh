@@ -2,7 +2,8 @@
 
 SOURCE_DIR=$(pwd)
 
-BUILD_TYPE_ARRAY="debug release"
+# BUILD_TYPE_ARRAY="debug release"
+BUILD_TYPE_ARRAY="debug"
 for i in ${BUILD_TYPE_ARRAY}; do
   BUILD_TYPE=${i}
   INSTALL_DIR=output/${BUILD_TYPE}
