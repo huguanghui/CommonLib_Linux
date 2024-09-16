@@ -57,3 +57,4 @@ null
 .xmake
 .cache/
 output
+compile_commands.json

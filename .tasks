@@ -2,7 +2,7 @@
 # see: https://github.com/skywind3000/asynctasks.vim/wiki/Task-Config
 
 [project-init]
-command=mkdir build && cd build && cmake ..
+command=mkdir -p build && cd build && cmake ..
 cwd=<root>
 
 [project-build]
@@ -12,7 +12,8 @@ errorformat=%. %#--> %f:%l:%c
 save=1
 
 [project-run]
-command=build/pcm_trans -i=./tips/dd1.pcm -o=./tips2/dd1.pcm
+; command=build/pcm_trans -i=./tips/dd1.pcm -o=./tips2/dd1.pcm
+command=http
 cwd=<root>
 output=quickfix
 
